@@ -4,6 +4,11 @@
 
 #include <string>
 
+enum fBoard {
+	TURN_WHITE = FLAG_WHITE ,
+	TURN_BLACK = FLAG_BLACK ,
+};
+
 class Board {
 	unsigned char board [ 8 ][ 8 ] ;
 
@@ -17,13 +22,18 @@ public:
 	std::string genfen ( ) const;
 
 	// 1-indexed
-	inline iPiece piece_id ( unsigned int x , unsigned int y ) {
+	inline iPiece piece_id ( unsigned int x , unsigned int y ) const {
 		return ( iPiece ) ( board [ x - 1 ][ y - 1 ] & 0x0F ) ;
 	}
 
 	// 1-indexed
-	inline iPiece piece_type ( unsigned int x , unsigned int y ) {
+	inline iPiece piece_type ( unsigned int x , unsigned int y ) const {
 		return ( iPiece ) ( board [ x - 1 ][ y - 1 ] & 0xF0 );
+	}
+
+	// true if white are playing
+	inline bool turn ( ) const {
+		return flag & TURN_WHITE;
 	}
 
 	// 1-indexed

@@ -79,6 +79,8 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) , mBoard ( ) {
 	} );
 
 	on_message ( WM_IDLE , [ = ] ( wl::params p ) -> LRESULT {
+		mBuffer->Clear ( Gdiplus::Color ( 200 , 200 , 200 ) );
+
 		for ( unsigned int y = 1; y <= 8; y++ ) {
 			for ( unsigned int x = 1; x <= 8; x++ ) {
 				if ( ( y * 9 + x ) % 2 )
@@ -124,9 +126,20 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) , mBoard ( ) {
 			mBuffer->DrawString ( txt , 1 , mFont , rect , mFontFormat , mFontBrush );
 		}
 
-		mGraphics->DrawImage ( mFramebuffer , 0 , 0 , clientsize ( ).cx , clientsize ( ).cy ) ;
+		if ( mBoard.turn ( ) ) {
+			static wchar_t txt [ 24 ];
+			swprintf_s ( txt , 24 , L"PLAYING:\nWHITE" );
+			Gdiplus::RectF rect ( 0 , 0 , szTile , szTile );
+			mBuffer->DrawString ( txt , -1 , mFont , rect , mFontFormat , mFontBrush );
+		}
+		else {
+			static wchar_t txt [ 24 ];
+			swprintf_s ( txt , 24 , L"PLAYING:\nBLACK" );
+			Gdiplus::RectF rect ( 0 , 0 , szTile , szTile );
+			mBuffer->DrawString ( txt , -1 , mFont , rect , mFontFormat , mFontBrush );
+		}
 
-		mBoard.init ( mBoard.genfen ( ) ) ;
+		mGraphics->DrawImage ( mFramebuffer , 0 , 0 , clientsize ( ).cx , clientsize ( ).cy ) ;
 
 		return 0;
 	} );

@@ -41,7 +41,9 @@ void Board::init ( const std::string &fen ) {
 	for ( unsigned int i = 0; i < 8; i++ )
 	for ( unsigned int j = 0; j < 8; j++ )
 		board [ i ][ j ] = ID_NONE;
-	for ( size_t i = 0; i < fen.length ( ); i++ ) {
+	size_t i = 0;
+	bool finished = false;
+	for ( ; finished == false and i < fen.length ( ); i++ ) {
 		switch ( fen [ i ] ) {
 			case '/': 
 				file = 0;
@@ -60,11 +62,22 @@ void Board::init ( const std::string &fen ) {
 				file += fen [ i ] - '0' ;
 			break;
 			case ' ':
-			return;
+				finished = true;
+			break;
 			default:
 				board [ file ][ rank ] = StringToPiece ( fen [ i ] ) ;
 				file++;
 			break;
+		}
+	}
+	for ( ; i < fen.length ( ); i++ ) {
+		switch ( fen [ i ] ) {
+			case 'w':
+				flag = TURN_WHITE;
+			return;
+			case 'b':
+				flag = TURN_BLACK;
+			return;
 		}
 	}
 }
@@ -94,25 +107,29 @@ std::string Board::genfen ( ) const {
 		// add the rank to the fen
 		fen += rankFen;
 		// add rank separator. If last then add a space
-		if ( !( rank == 63 ) ) {
+		if ( !( rank == 7 ) ) {
 			fen += "/";
 		}
 		else {
 			fen += " ";
 		}
 	}
+	if ( flag & TURN_WHITE )
+		fen += "w";
+	else
+		fen += "b";
 	return fen;
 }
 
-Board::Board ( ) {
-	init ( "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" );
+Board::Board ( ) : flag ( TURN_WHITE ) {
+	init ( "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w" );
 }
 
 Board::Board ( const std::string &fen ) {
 	init ( fen ) ;
 }
 
-Board::Board ( const Board &other ) {
+Board::Board ( const Board &other ) : flag ( other.flag ) {
 	init ( other.genfen ( ) ) ;
 }
 
@@ -121,9 +138,16 @@ bool Board::move ( unsigned int fromx , unsigned int fromy , unsigned int tox , 
 	if ( 0 < tox and tox < 9 and 0 < toy and toy < 9 ) {
 	if ( fromx != tox or fromy != toy ) {
 	if ( piece_type ( fromx , fromy ) != piece_type ( tox , toy ) ) {
+	if ( piece_type ( fromx , fromy ) & flag ) {
+		unsigned char type = piece_type ( fromx , fromy );
 		board [ tox - 1 ][ toy - 1 ] = board [ fromx - 1 ][ fromy - 1 ];
 		board [ fromx - 1 ][ fromy - 1 ] = ID_NONE;
+		flag &= ( ~type );
+		if ( type == TURN_WHITE )
+			flag |= TURN_BLACK;
+		else
+			flag |= TURN_WHITE;
 		return true;
-	} } } }
+	} } } } }
 	return false;
 }
