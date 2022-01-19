@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\wm">
+      <UniqueIdentifier>{22ce726b-1215-4258-aa56-31308d74f9c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\wm\internal">
+      <UniqueIdentifier>{a227c023-2c20-4d7d-b489-1ea72082a9fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gpu">
+      <UniqueIdentifier>{c411673f-00e7-4658-be5c-00d1a89faf84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gpu\internal">
+      <UniqueIdentifier>{a07b8909-e701-4c1d-a430-a16d40d81a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base">
+      <UniqueIdentifier>{53300582-d85b-49f9-ad66-146201fe5dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base\internal">
+      <UniqueIdentifier>{e33413c0-e383-499b-a0f2-ac6398e3aafc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
+      <UniqueIdentifier>{b7abbc91-f2f9-4dbc-9199-6591697cbbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\internal">
+      <UniqueIdentifier>{73a893fe-5527-4775-a44d-7fb8b78731fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\royalib.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\button.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\checkbox.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\com.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\combobox.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\datetime.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\datetime_picker.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\dialog_control.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\dialog_main.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\dialog_modal.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\dialog_modeless.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\download.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\executable.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\file.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\file_ini.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\file_mapped.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\font.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\gdi.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\icon.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\image_list.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\insert_order_map.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\label.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\listview.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\menu.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\path.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\progress_taskbar.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\progressbar.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\radio.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\radio_group.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\resizer.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\scrollinfo.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\statusbar.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\str.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\subclass.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\sysdlg.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\syspath.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\textbox.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\treeview.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\vec.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\version.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\window_control.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\wm.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\wnd.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\xml.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\zip.h">
+      <Filter>src\wm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_dialog.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_focus_pubm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_loop.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_msg.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_msg_pubm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_native_ctrl.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_native_ctrl_pubm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_scroll.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_text_pubm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_thread.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_thread_pubm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_user_ctrl.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\base_window.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\com_bstr.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\com_lib.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\com_ptr.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\com_variant.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\download_session.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\download_url.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\enable_bitmask_operators.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\gdi_objects.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\lippincott.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\listview_column_collection.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\listview_item.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\listview_item_collection.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\listview_styler.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\member_image_list.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\params.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\params_wm.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\params_wmn.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\run.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\store.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\str_priv.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\styler.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\styles_wc.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\styles_ws.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\styles_wsx.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\sysdlg_priv.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\treeview_item.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\treeview_item_collection.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wm\internals\treeview_styler.h">
+      <Filter>src\wm\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_init.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_backend.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_dynstr.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_string.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_context.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\console.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_batch.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_defs.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_element.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_extensions.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_framebuffer.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_matrix.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_primitive.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_shader.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_state.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_texture.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_uniform_buffer.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_vertbuff.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\gpu_vertformat.h">
+      <Filter>src\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_assert.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_file.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_hash.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\base_utildefines.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\math_matrix.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gpu\internal\gpu_init.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_backend.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\internal\base_dynstr.cpp">
+      <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\internal\base_string.cpp">
+      <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_context.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\console.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_batch.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_defs.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_element.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_extensions.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_framebuffer.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_matrix.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_primitive.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_shader.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_state.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_texture.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_uniform_buffer.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_vertbuff.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\internal\gpu_vertformat.cpp">
+      <Filter>src\gpu\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\internal\base_file.cpp">
+      <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\internal\base_hash.cpp">
+      <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math\interna\math_matrix.cpp">
+      <Filter>src\math\internal</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
