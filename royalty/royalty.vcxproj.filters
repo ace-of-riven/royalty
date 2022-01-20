@@ -13,19 +13,73 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\chess\board.h">
+    <ClInclude Include="src\chess\header\Bishop.hpp">
       <Filter>src\chess</Filter>
     </ClInclude>
-    <ClInclude Include="src\chess\config.h">
+    <ClInclude Include="src\chess\header\ChessErrHandler.hpp">
       <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\ChessInfo.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\EmptyPiece.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\King.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\Knight.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\Pawn.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\Piece.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\Queen.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chess\header\Rook.hpp">
+      <Filter>src\chess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\board.hpp">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\api.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\chess\board.cpp">
+    <ClCompile Include="src\chess\Bishop.cpp">
       <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\ChessErrHandler.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\EmptyPiece.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\King.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\Knight.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\Pawn.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\Piece.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\Queen.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\chess\Rook.cpp">
+      <Filter>src\chess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\board.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
