@@ -2,7 +2,7 @@
 
 #include "../resource.h"
 
-#include "board.hpp"
+#include "chess/chess.h"
 
 #include <map>
 
@@ -21,7 +21,7 @@
 
 class GlobalWindow : public wl::window_main {
 	// sprite atlas
-	std::map<std::string , Gdiplus::Image *> mAtlas;
+	std::map<char , Gdiplus::Image *> mAtlas;
 	Gdiplus::Graphics *mGraphics;
 	Gdiplus::Graphics *mBuffer;
 	Gdiplus::Bitmap *mFramebuffer;
@@ -36,7 +36,10 @@ class GlobalWindow : public wl::window_main {
 	int offx , offy;
 
 	// active board
-	ChessBoard cb;
+	Node root;
+	Node best;
+
+	bool black_turn;
 
 	const int szTile = 128;
 public:
