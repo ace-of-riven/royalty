@@ -15,6 +15,7 @@
 #include "../gpu/gpu_vertformat.h"
 
 #include "eng_proctor.h"
+#include "eng_texture.h"
 
 class Material : public Proctor {
 	GPU_Texture *albedo_t ;
@@ -25,9 +26,9 @@ public:
 
 	virtual int ComponentStack ( int comp );
 
-	void SetAlbedo ( GPU_Texture *albedo ) ;
+	void SetAlbedo ( const Texture *albedo ) ;
 	void SetAlbedo ( glm::vec4 colour ) ;
-	void SetAlbedo ( GPU_Texture *albedo , glm::vec4 colour ) ;
+	void SetAlbedo ( const Texture *albedo , glm::vec4 colour ) ;
 
 	inline GPU_Texture *GetAlbedoTexture ( ) const { return albedo_t; }
 	inline glm::vec4 GetAlbedoColour ( ) const { return albedo_c; }

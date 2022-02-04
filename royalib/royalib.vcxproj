@@ -35,6 +35,7 @@
     <ClInclude Include="src\eng\eng_renderer.h" />
     <ClInclude Include="src\eng\eng_script.h" />
     <ClInclude Include="src\eng\eng_staticobject.h" />
+    <ClInclude Include="src\eng\eng_texture.h" />
     <ClInclude Include="src\eng\eng_transform.h" />
     <ClInclude Include="src\eng\internal\eng_viewportbatch.h" />
     <ClInclude Include="src\ext_include.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\eng\internal\eng_proctor.cpp" />
     <ClCompile Include="src\eng\internal\eng_renderer.cpp" />
     <ClCompile Include="src\eng\internal\eng_script.cpp" />
+    <ClCompile Include="src\eng\internal\eng_texture.cpp" />
     <ClCompile Include="src\eng\internal\eng_transform.cpp" />
     <ClCompile Include="src\eng\internal\eng_viewportbatch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_backend.cpp" />

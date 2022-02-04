@@ -16,10 +16,10 @@ Material::~Material ( ) {
 
 }
 
-void Material::SetAlbedo ( GPU_Texture *albedo ) {
+void Material::SetAlbedo ( const Texture *albedo ) {
 	albedo_c = glm::vec4 ( 1.0f , 1.0f , 1.0f , 1.0f ) ;
 	if ( albedo )
-		albedo_t = albedo;
+		albedo_t = albedo->GetGPUTexture ( );
 	else
 		albedo_t = GPU_texture_get_empty ( 2 );
 }
@@ -29,10 +29,10 @@ void Material::SetAlbedo ( glm::vec4 colour ) {
 	albedo_c = colour;
 }
 
-void Material::SetAlbedo ( GPU_Texture *albedo , glm::vec4 colour ) {
+void Material::SetAlbedo ( const Texture *albedo , glm::vec4 colour ) {
 	albedo_c = colour;
 	if ( albedo )
-		albedo_t = albedo;
+		albedo_t = albedo->GetGPUTexture ( );
 	else
 		albedo_t = GPU_texture_get_empty ( 2 );
 }

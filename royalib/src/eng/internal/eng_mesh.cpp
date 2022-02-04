@@ -17,12 +17,12 @@ MeshVertex::MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec2 uv ) : coo
 
 Mesh::Mesh ( ) : Component ( COMP_MESH ) {
 	material = NULL;
-	transform = glm::mat4 ( 1.0f ) ;
+	transform.SetIdentity ( ) ;
 }
 
 Mesh::Mesh ( const std::vector<MeshVertex> &vertices , const std::vector<unsigned int> &indices ) : Component ( COMP_MESH ) , vertices ( vertices ) , indices ( indices ) {
 	material = NULL;
-	transform = glm::mat4 ( 1.0f );
+	transform.SetIdentity ( );
 }
 
 Mesh::~Mesh ( ) {
