@@ -4,6 +4,7 @@
 
 #include "eng_component.h"
 #include "eng_material.h"
+#include "eng_transform.h"
 
 #include <vector>
 
@@ -11,7 +12,7 @@ struct MeshVertex {
 	MeshVertex ( ) ;
 	MeshVertex ( glm::vec4 coord ) ;
 	MeshVertex ( glm::vec4 coord , glm::vec3 norm ) ;
-	MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec3 uv );
+	MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec2 uv );
 
 	glm::vec4 coord;
 	glm::vec3 norm;
@@ -30,7 +31,7 @@ public:
 
 	Material *material;
 
-	glm::mat4 transform;
+	Transform transform;
 
 	void OnUpdate ( double deltaTime );
 

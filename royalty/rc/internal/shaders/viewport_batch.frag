@@ -1,6 +1,6 @@
 out vec4 FragColor;
 
-layout(std140) uniform MaterialProperties {
+layout(std140, binding = 0) uniform MaterialProperties {
 	struct {
 		vec4 AlbedoC ;
 		int AlbedoT ;

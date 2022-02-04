@@ -34,6 +34,25 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		ROYALTY_init ( );
 
+		GameObject *obj = new GameObject ( "test" ) ;
+
+		std::vector<MeshVertex> vertices ;
+		vertices.push_back ( MeshVertex ( glm::vec4 ( -0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 0.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 (  0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 0.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 (  0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 1.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 ( -0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 1.0f ) ) ) ;
+
+		std::vector<unsigned int> indices;
+		indices.push_back ( 0 ); indices.push_back ( 1 ); indices.push_back ( 2 );
+		indices.push_back ( 2 ); indices.push_back ( 3 ); indices.push_back ( 0 );
+
+		Mesh *mesh = new Mesh ( vertices , indices );
+
+		mesh->material = new Material ( );
+		mesh->material->SetAlbedo ( glm::vec4 ( 1.0f , 0.5f , 0.0f , 1.0f ) );
+
+		obj->AddComponent<Mesh> ( mesh ) ;
+
 		wglSwapIntervalEXT ( 0 ) ;
 		return 0;
 	} );

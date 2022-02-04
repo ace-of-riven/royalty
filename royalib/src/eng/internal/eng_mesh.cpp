@@ -10,7 +10,7 @@ MeshVertex::MeshVertex ( glm::vec4 coord ) : coord ( coord ) {
 MeshVertex::MeshVertex ( glm::vec4 coord , glm::vec3 norm ) : coord ( coord ) , norm ( norm ) {
 }
 
-MeshVertex::MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec3 uv ) : coord ( coord ) , norm ( norm ) , uv ( uv ) {
+MeshVertex::MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec2 uv ) : coord ( coord ) , norm ( norm ) , uv ( uv ) {
 }
 
 //

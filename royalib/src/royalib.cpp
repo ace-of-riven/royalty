@@ -11,7 +11,11 @@ void ROYALTY_init ( ) {
 void ROYALTY_update ( ) {
 	auto curr_upd = std::chrono::system_clock::now ( );
 	double deltaTime = std::chrono::duration<double> ( curr_upd - last_upd ).count ( ) ;
+	GPU_matrix_push ( ) ;
+	GPU_matrix_push_projection ( ) ;
 	ENG_Royalty->Update ( deltaTime ) ;
+	GPU_matrix_pop_projection ( );
+	GPU_matrix_pop ( );
 	last_upd = curr_upd;
 }
 
