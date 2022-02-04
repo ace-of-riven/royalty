@@ -394,6 +394,9 @@
     <ClInclude Include="src\eng\eng_transform.h">
       <Filter>src\eng</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\eng_texture.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -494,6 +497,9 @@
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_transform.cpp">
       <Filter>src\eng</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_texture.cpp">
+      <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

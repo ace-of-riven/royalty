@@ -12,8 +12,8 @@ class SampleScript : public Script {
 public:
 	virtual void OnUpdate ( double deltaTime ) {
 		float dt ( deltaTime ) ;
-		GetParent ( )->GetComponent<Mesh> ( )->transform *= glm::rotate ( glm::radians ( 180.0f ) * dt , glm::vec3 ( 0.0f , 0.0f , 1.0f ) ) ;
-		GetParent ( )->GetComponent<Mesh> ( )->transform *= glm::rotate ( glm::radians ( 180.0f ) * dt , glm::vec3 ( 0.0f , 1.0f , 0.0f ) ) ;
+		GetParent ( )->GetComponent<Mesh> ( )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f ) ;
+		GetParent ( )->GetComponent<Mesh> ( )->transform.RotateEuler ( glm::radians ( 170.0f * dt ) , 0.0f , 0.0f , 1.0f );
 	}
 };
 
@@ -52,6 +52,7 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 		mesh->material->SetAlbedo ( glm::vec4 ( 1.0f , 0.5f , 0.0f , 1.0f ) );
 
 		obj->AddComponent<Mesh> ( mesh ) ;
+		obj->AddComponent<Script> ( new SampleScript ) ;
 
 		wglSwapIntervalEXT ( 0 ) ;
 		return 0;

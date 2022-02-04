@@ -157,6 +157,8 @@ void ViewportRenderer::Render ( const ViewportRendererBatch *batch ) {
 void ViewportRenderer::Flush ( ) {
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ) ;
 
+	GPU_depth_test ( true ) ;
+
 	for ( unsigned int i = 0; i < Batches.size ( ); i++ ) {
 		Build ( Batches [ i ] ) ;
 		Render ( Batches [ i ] ) ;
