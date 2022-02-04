@@ -308,7 +308,7 @@ static std::string gpu_shader_standard_defines ( ) {
 }
 
 std::string shader_generate_code ( const char *defines , const char *code ) {
-	std::string output = "#version 330 core\n";
+	std::string output = "#version 430 core\n";
 	output += gpu_shader_standard_defines ( ) ;
 	if ( defines )
 		output += defines ;

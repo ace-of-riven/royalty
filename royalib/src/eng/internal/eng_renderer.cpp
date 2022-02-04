@@ -43,6 +43,7 @@ ViewportRenderer::~ViewportRenderer ( ) {
 void ViewportRenderer::Begin ( ) {
 	for ( auto batch : Batches ) {
 		batch->textures.clear ( );
+		batch->materials.clear ( );
 
 		batch->indices_count = 0;
 		batch->vertices_count = 0;
@@ -53,7 +54,7 @@ void ViewportRenderer::Begin ( ) {
 }
 
 void ViewportRenderer::Insert ( ViewportRendererBatch *batch , const Mesh *mesh ) {
-	unsigned int offset = batch->vertices_count;
+	unsigned int i_offset = batch->vertices_count;
 
 	int material_id = batch->RegisterMaterial ( mesh->material );
 	int albedo_tex_id = batch->RegisterTexture ( mesh->material->GetAlbedoTexture ( ) ) ;
@@ -61,7 +62,8 @@ void ViewportRenderer::Insert ( ViewportRendererBatch *batch , const Mesh *mesh 
 	batch->mat_properties.Material [ material_id ].albedo_t = albedo_tex_id;
 	batch->mat_properties.Material [ material_id ].albedo_c = mesh->material->GetAlbedoColour ( ) ;
 
-	batch->mesh_properties.Mesh [ batch->mesh_count ].ModelView = mesh->transform;
+	batch->mesh_properties.Mesh [ batch->mesh_count ].ModelView = mesh->transform.GetMatrix ( );
+	batch->mesh_properties.Mesh [ batch->mesh_count ].MaterialID = material_id;
 
 	for ( unsigned int v = 0; v < mesh->GetVertices ( ).size ( ); v++ ) {
 		if ( aPos + 1 )
@@ -74,9 +76,9 @@ void ViewportRenderer::Insert ( ViewportRendererBatch *batch , const Mesh *mesh 
 	}
 
 	for ( unsigned int i = 0; i < mesh->GetIndices ( ).size ( ); i++ ) {
-		GPU_indexbuf_add_generic_vert ( batch->builder , offset + mesh->GetIndices ( ) [ i ] );
+		GPU_indexbuf_add_generic_vert ( batch->builder , i_offset + mesh->GetIndices ( ) [ i ] );
 		batch->indices_count++;
-	}
+	}  
 
 	batch->mesh_count++;
 }
@@ -136,8 +138,18 @@ void ViewportRenderer::Render ( const ViewportRendererBatch *batch ) {
 	GPU_uniformbuf_update ( ViewportMeshProperties , &batch->mesh_properties );
 	GPU_uniformbuf_update ( ViewportMatProperties , &batch->mat_properties );
 
-	GPU_uniformbuf_bind ( ViewportMeshProperties , GPU_uniformbuf_index ( ViewportMeshProperties , ViewportBatchShader ) );
-	GPU_uniformbuf_bind ( ViewportMatProperties , GPU_uniformbuf_index ( ViewportMatProperties , ViewportBatchShader ) );
+	GPU_uniformbuf_bind ( ViewportMeshProperties , 1 );
+	GPU_uniformbuf_bind ( ViewportMatProperties , 0 );
+
+	static char u_buffer [ 256 ] ;
+
+	for ( unsigned int i = 0; i < batch->textures.size ( ); i++ ) {
+		sprintf_s ( u_buffer , 256 , "uTexture[%d]" , i ) ;
+		GPU_texture_bind ( batch->textures [ i ] , i ) ;
+		GPU_batch_uniform_1i ( batch->batch , u_buffer , i ) ;
+	}
+
+	GPU_matrix_bind ( ViewportBatchShader->shaderface );
 
 	GPU_batch_draw_advanced ( batch->batch , 0 , batch->indices_count , 0 , 0 );
 }

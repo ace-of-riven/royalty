@@ -5,17 +5,16 @@
 struct ViewportMeshProperties_UBO {
 	struct {
 		glm::mat4 ModelView;
+		int MaterialID;			// material id
+		int _p0 , _p1 , _p2;		// padding
 	} Mesh [ MAX_MESHES ] ;
 };
 
 struct ViewportMatProperties_UBO {
 	struct {
-		glm::vec4 albedo_c;	// albedo colour
-		int albedo_t;		// albedo texture
-
-		int p0;			// padding
-		int p1;			// padding
-		int p2;			// padding
+		glm::vec4 albedo_c;		// albedo colour
+		int albedo_t;			// albedo texture
+		int _p0 , _p1 , _p2 ;		// padding
 	} Material [ MAX_MATERIALS ];
 };
 

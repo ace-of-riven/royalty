@@ -74,6 +74,7 @@ void GPU_context_active_set ( GPU_Context *ctx ) {
 	current_ctx = ctx;
 
 	GPU_init ( );
+	GPU_invalid_tex_init ( ) ;
 }
 
 static void orphans_add ( GPU_Context *ctx , std::vector<GLuint> *orphan_list , GLuint id ) {
