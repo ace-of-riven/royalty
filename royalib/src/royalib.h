@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ext_include.h"
+
 #include "base/base_string.h"
 #include "base/base_dynstr.h"
 
@@ -27,4 +29,17 @@
 #include "wm/checkbox.h"
 #include "wm/gdi.h"
 
+#include "eng/eng_manager.h"
+#include "eng/eng_proctor.h"
+#include "eng/eng_gameobject.h"
+#include "eng/eng_staticobject.h"
+#include "eng/eng_component.h"
+#include "eng/eng_renderer.h"
+#include "eng/eng_script.h"
+#include "eng/eng_mesh.h"
+
 #include "math/math_matrix.h"
+
+void ROYALTY_init ( ) ;
+void ROYALTY_update ( ) ;
+void ROYALTY_exit ( );

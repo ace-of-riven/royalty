@@ -12,7 +12,7 @@ static void GPU_uniformbuf_init ( GPU_UniformBuf* ubo ) {
 GPU_UniformBuf* GPU_uniformbuf_create ( size_t size , const char* name ) {
 	GPU_UniformBuf* ubo = new GPU_UniformBuf ( );
 	ubo->size_in_bytes = size;
-	ubo->data = nullptr;
+	ubo->data = NULL ;
 	strcpy ( ubo->name , name ) ;
 	return ubo;
 }
@@ -39,7 +39,7 @@ void GPU_uniformbuf_bind ( GPU_UniformBuf* ubo , int slot ) {
 		GPU_uniformbuf_init ( ubo );
 	}
 	if ( ubo->data != nullptr ) {
-		GPU_uniformbuf_update ( ubo , ubo->data ) ;
+		GPU_uniformbuf_update ( ubo , ubo->data );
 		free ( ubo->data );
 	}
 	ubo->slot = slot;
@@ -51,6 +51,7 @@ void GPU_uniformbuf_unbind ( GPU_UniformBuf* ubo ) {
 }
 
 void GPU_uniformbuf_discard ( GPU_UniformBuf* buff ) {
+	free ( buff->data ) ;
 	GPU_buf_free ( buff->ubo_id ) ;
 	delete buff;
 }

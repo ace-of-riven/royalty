@@ -18,6 +18,9 @@
 #pragma comment (lib,"Gdiplus.lib")
 
 class GlobalWindow : public wl::window_main {
+	GPU_Context *ctx;
+	GameObject *test_obj1;
+	GameObject *test_obj2;
 public:
 	GlobalWindow ( ) ;
 };

@@ -4,6 +4,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{95e11437-89df-4463-bf9e-59659217ab41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\main">
+      <UniqueIdentifier>{47aec97b-6db5-405b-bf70-dda2f2fee05e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\api.h">

@@ -300,11 +300,15 @@ static std::string gpu_shader_standard_defines ( ) {
 		defines += "#define DFDY_SIGN -1.0\n";
 	}
 
+	defines += "#define MAX_FRAG_TEXTURES " + std::to_string ( GPU_max_textures_frag ( ) ) + "\n";
+	defines += "#define MAX_VERT_TEXTURES " + std::to_string ( GPU_max_textures_vert ( ) ) + "\n";
+	defines += "#define MAX_TEXTURES " + std::to_string ( GPU_max_textures ( ) ) + "\n";
+
 	return defines;
 }
 
 std::string shader_generate_code ( const char *defines , const char *code ) {
-	std::string output = "#version 420 core\n";
+	std::string output = "#version 330 core\n";
 	output += gpu_shader_standard_defines ( ) ;
 	if ( defines )
 		output += defines ;

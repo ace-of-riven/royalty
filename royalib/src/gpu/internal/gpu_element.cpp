@@ -274,13 +274,18 @@ static void squeeze_indices_short ( GPU_IndexBufBuilder *builder , GPU_IndexBuf 
 
 GPU_IndexBuf *GPU_indexbuf_build ( GPU_IndexBufBuilder *builder ) {
 	GPU_IndexBuf *elem = new GPU_IndexBuf ( ) ;
+	elem->ibo_id = 0;
+
 	GPU_indexbuf_build_in_place ( builder , elem );
 	return elem;
 }
 
 void GPU_indexbuf_build_in_place ( GPU_IndexBufBuilder *builder , GPU_IndexBuf *elem ) {
 	elem->index_len = builder->index_len;
-	elem->ibo_id = 0; /* Created at first use. */
+	if ( elem->index_len < builder->index_len and elem->ibo_id ) {
+		GPU_buf_free ( elem->ibo_id ) ;
+		elem->ibo_id = 0;
+	}
 
 #ifdef GPU_TRACK_INDEX_RANGE
 	unsigned int min_index , max_index;
@@ -299,6 +304,7 @@ void GPU_indexbuf_build_in_place ( GPU_IndexBufBuilder *builder , GPU_IndexBuf *
 	}
 	elem->gl_index_type = convert_index_type_to_gl ( elem->index_type );
 #endif
+	assert ( elem->data == NULL ) ;
 
 	/* Transfer data ownership to GPUIndexBuf.
 	 * It will be uploaded upon first use. */
@@ -334,5 +340,5 @@ void GPU_indexbuf_discard ( GPU_IndexBuf *elem ) {
 		GPU_buf_free ( elem->ibo_id );
 	if ( !elem->is_subrange && elem->data )
 		free ( elem->data );
-	free ( elem );
+	delete elem;
 }
