@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\CMakeFiles\a2fb1cdd4146c0373f075f5b19cdc873\Nightly.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\CMakeFiles\Nightly" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DCEA8C96-80DA-3088-8435-2508B42A9DE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

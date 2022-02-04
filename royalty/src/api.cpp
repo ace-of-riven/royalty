@@ -8,8 +8,18 @@
 
 #include <thread>
 
+class SampleScript : public Script {
+public:
+	virtual void OnUpdate ( double deltaTime ) {
+		float dt ( deltaTime ) ;
+		GetParent ( )->GetComponent<Mesh> ( )->transform *= glm::rotate ( glm::radians ( 180.0f ) * dt , glm::vec3 ( 0.0f , 0.0f , 1.0f ) ) ;
+		GetParent ( )->GetComponent<Mesh> ( )->transform *= glm::rotate ( glm::radians ( 180.0f ) * dt , glm::vec3 ( 0.0f , 1.0f , 0.0f ) ) ;
+	}
+};
+
 GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 	setup.size = { 1280 , 720 } ;
+	setup.style = WS_OVERLAPPEDWINDOW ;
 	setup.title = L"Royalty" ;
 
 	on_message ( WM_CREATE , [ = ] ( wl::wm::create p ) -> LRESULT {
@@ -18,6 +28,18 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 			freopen ( "CONOUT$" , "w" , stderr );
 			freopen ( "CONIN$" , "r" , stdin );
 		}
+
+		ctx = GPU_context_create ( hwnd ( ) );
+		GPU_context_active_set ( ctx );
+
+		ROYALTY_init ( );
+
+		wglSwapIntervalEXT ( 0 ) ;
+		return 0;
+	} );
+
+	on_message ( WM_DESTROY , [ = ] ( wl::wm::create p ) -> LRESULT {
+		ROYALTY_exit ( );
 		return 0;
 	} );
 
@@ -34,6 +56,14 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 	} );
 
 	on_message ( WM_IDLE , [ = ] ( wl::params p ) -> LRESULT {
+		SIZE client = clientsize ( ) ;
+
+		GPU_context_active_set ( ctx ) ;
+		glViewport ( 0 , 0 , client.cx , client.cy ) ;
+
+		ROYALTY_update ( );
+
+		swapbuffers ( ) ;
 		return 0;
 	} );
 }

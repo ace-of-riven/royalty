@@ -90,6 +90,26 @@ void GPU_platform_init ( ) {
 	long os = GPU_OS_ANY;
 	long driver = GPU_DRIVER_ANY;
 
+	glGetIntegerv ( GL_MAX_TEXTURE_IMAGE_UNITS , &GPUGLEWExtensions.maxtexturesfrag );
+	glGetIntegerv ( GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS , &GPUGLEWExtensions.maxtexturesvert );
+	glGetIntegerv ( GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS , &GPUGLEWExtensions.maxtexturesgeom );
+	glGetIntegerv ( GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS , &GPUGLEWExtensions.maxtextures );
+	glGetIntegerv ( GL_MAX_TEXTURE_SIZE , &GPUGLEWExtensions.maxtexsize );
+	glGetIntegerv ( GL_MAX_ARRAY_TEXTURE_LAYERS , &GPUGLEWExtensions.maxtexlayers );
+	glGetIntegerv ( GL_MAX_CUBE_MAP_TEXTURE_SIZE , &GPUGLEWExtensions.maxcubemapsize );
+
+	if ( GLEW_EXT_texture_filter_anisotropic ) {
+		glGetFloatv ( GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT , &GPUGLEWExtensions.max_anisotropy );
+	}
+	else {
+		GPUGLEWExtensions.max_anisotropy = 1.0f;
+	}
+
+	glGetIntegerv ( GL_MAX_FRAGMENT_UNIFORM_BLOCKS , &GPUGLEWExtensions.maxubobinds );
+	glGetIntegerv ( GL_MAX_UNIFORM_BLOCK_SIZE , &GPUGLEWExtensions.maxubosize );
+	glGetFloatv ( GL_ALIASED_LINE_WIDTH_RANGE , GPUGLEWExtensions.line_width_range );
+	glGetIntegerv ( GL_MAX_COLOR_TEXTURE_SAMPLES , &GPUGLEWExtensions.samples_color_texture_max );
+
 #ifdef _WIN32
 	os = GPU_OS_WIN;
 #elif defined(__APPLE__)

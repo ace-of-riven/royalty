@@ -10,7 +10,7 @@
 #include <algorithm>
 
 static unsigned int gpu_texture_memory_footprint_compute ( GPU_Texture *tex ) {
-	int samp = max ( tex->samples , 1 ) ;
+	int samp = std::max ( tex->samples , 1 ) ;
 	switch ( tex->target_base ) {
 		case GL_TEXTURE_1D:
 			return tex->bytesize * tex->w * samp ;
@@ -509,7 +509,7 @@ static bool gpu_texture_try_alloc ( GPU_Texture *tex , GLenum proxy , GLenum int
 GPU_Texture *GPU_texture_create_nD ( int w , int h , int d , int n , const void *pixels ,
 	eGPUTextureFormat tex_format , eGPUDataFormat gpu_data_format , int samples , const bool can_rescale ) {
 	if ( samples ) {
-		samples = min ( samples , GPU_max_color_texture_samples ( ) ) ;
+		samples = std::min ( samples , GPU_max_color_texture_samples ( ) ) ;
 	}
 
 	GPU_Texture *tex = new GPU_Texture ( ) ;
@@ -1030,11 +1030,11 @@ void *GPU_texture_read ( GPU_Texture *tex , eGPUDataFormat gpu_data_format , int
 	gpu_validate_data_format ( tex->format , gpu_data_format );
 
 	size_t buf_size = gpu_texture_memory_footprint_compute ( tex );
-	size_t samples_count = max ( 1 , tex->samples );
+	size_t samples_count = std::max ( 1 , tex->samples );
 
 	samples_count *= size [ 0 ];
-	samples_count *= max ( 1 , size [ 1 ] );
-	samples_count *= max ( 1 , size [ 2 ] );
+	samples_count *= std::max ( 1 , size [ 1 ] );
+	samples_count *= std::max ( 1 , size [ 2 ] );
 	samples_count *= ( GPU_texture_cube ( tex ) ) ? 6 : 1;
 
 	switch ( gpu_data_format ) {
@@ -1268,7 +1268,7 @@ void GPU_texture_generate_mipmap ( GPU_Texture *tex )
 		 * In this case we just create a complete texture with mipmaps manually without down-sampling.
 		 * You must initialize the texture levels using other methods like
 		 * GPU_framebuffer_recursive_downsample(). */
-		int levels = 1 + floor ( log2 ( max ( tex->w , tex->h ) ) );
+		int levels = 1 + floor ( log2 ( std::max ( tex->w , tex->h ) ) );
 		eGPUDataFormat data_format = gpu_get_data_format_from_tex_format ( tex->format );
 		for ( int i = 1; i < levels; i++ ) {
 			GPU_texture_add_mipmap ( tex , data_format , i , NULL );
@@ -1499,20 +1499,20 @@ void GPU_texture_get_mipmap_size ( GPU_Texture *tex , int lvl , int *size )
 {
 	/* TODO assert if lvl is below the limit of 1px in each dimension. */
 	int div = 1 << lvl;
-	size [ 0 ] = max ( 1 , tex->w / div );
+	size [ 0 ] = std::max ( 1 , tex->w / div );
 
 	if ( tex->target == GL_TEXTURE_1D_ARRAY ) {
 		size [ 1 ] = tex->h;
 	}
 	else if ( tex->h > 0 ) {
-		size [ 1 ] = max ( 1 , tex->h / div );
+		size [ 1 ] = std::max ( 1 , tex->h / div );
 	}
 
 	if ( tex->target == GL_TEXTURE_2D_ARRAY ) {
 		size [ 2 ] = tex->d;
 	}
 	else if ( tex->d > 0 ) {
-		size [ 2 ] = max ( 1 , tex->d / div );
+		size [ 2 ] = std::max ( 1 , tex->d / div );
 	}
 }
 

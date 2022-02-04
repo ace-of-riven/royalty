@@ -23,6 +23,12 @@
     <Filter Include="src\base\internal">
       <UniqueIdentifier>{e33413c0-e383-499b-a0f2-ac6398e3aafc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\eng">
+      <UniqueIdentifier>{fa6090f4-0875-48ef-8210-9870cb4365ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eng\internal">
+      <UniqueIdentifier>{cdf791b1-53a1-4588-a365-a381b4d1a463}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\royalib.h">
@@ -352,6 +358,39 @@
     <ClInclude Include="src\base\base_utildefines.h">
       <Filter>src\base</Filter>
     </ClInclude>
+    <ClInclude Include="src\ext_include.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_manager.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_component.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_proctor.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_script.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_mesh.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_gameobject.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_renderer.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\internal\eng_viewportbatch.h">
+      <Filter>src\eng\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_staticobject.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_material.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -416,6 +455,39 @@
     </ClCompile>
     <ClCompile Include="src\base\internal\base_hash.cpp">
       <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_manager.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_component.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_proctor.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_script.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_mesh.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_gameobject.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\royalib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_renderer.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_viewportbatch.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\eng_staticobject.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_material.cpp">
+      <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

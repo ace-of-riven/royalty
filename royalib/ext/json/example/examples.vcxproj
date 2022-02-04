@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9C19D3C8-1A16-32F5-B66C-F167802A42B7}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>examples</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Jim\source\repos\royalty\royalib\ext\json\include;C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Jim\source\repos\royalty\royalib\ext\json\include;C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Jim\source\repos\royalty\royalib\ext\json\include;C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Jim\source\repos\royalty\royalib\ext\json\include;C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\CMakeFiles\3cc68acee5086686252bd7c906f9c689\examples.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\capitalize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\condense.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\filterkey.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\filterkeydom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\jsonx.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\lookaheadparser.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\messagereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\parsebyparts.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\pretty.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\prettyauto.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\schemavalidator.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\serialize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\simpledom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\simplereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\simplepullreader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\simplewriter.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\sortkeys.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Debug\tutorial.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\examples</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\capitalize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\condense.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\filterkey.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\filterkeydom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\jsonx.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\lookaheadparser.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\messagereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\parsebyparts.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\pretty.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\prettyauto.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\schemavalidator.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\serialize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\simpledom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\simplereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\simplepullreader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\simplewriter.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\sortkeys.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\Release\tutorial.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\examples</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\capitalize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\condense.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\filterkey.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\filterkeydom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\jsonx.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\lookaheadparser.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\messagereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\parsebyparts.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\pretty.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\prettyauto.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\schemavalidator.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\serialize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\simpledom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\simplereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\simplepullreader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\simplewriter.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\sortkeys.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\MinSizeRel\tutorial.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\examples</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\capitalize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\condense.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\filterkey.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\filterkeydom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\jsonx.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\lookaheadparser.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\messagereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\parsebyparts.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\pretty.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\prettyauto.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\schemavalidator.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\serialize.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\simpledom.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\simplereader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\simplepullreader.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\simplewriter.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\sortkeys.exe;C:\Users\Jim\source\repos\royalty\royalib\ext\json\bin\RelWithDebInfo\tutorial.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\examples</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</VerifyInputsAndOutputsExist>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Jim/source/repos/royalty/royalib/ext/json -BC:/Users/Jim/source/repos/royalty/royalib/ext/json --check-stamp-file C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Jim/source/repos/royalty/royalib/ext/json -BC:/Users/Jim/source/repos/royalty/royalib/ext/json --check-stamp-file C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Jim/source/repos/royalty/royalib/ext/json -BC:/Users/Jim/source/repos/royalty/royalib/ext/json --check-stamp-file C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Jim/source/repos/royalty/royalib/ext/json -BC:/Users/Jim/source/repos/royalty/royalib/ext/json --check-stamp-file C:/Users/Jim/source/repos/royalty/royalib/ext/json/example/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\CMakeFiles\examples">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\ZERO_CHECK.vcxproj">
+      <Project>{C7927DA2-EC7E-34AA-B60B-5DDC4E7C3331}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\capitalize.vcxproj">
+      <Project>{D06F771D-FCCC-3EE4-8F89-7C2C690DEE6B}</Project>
+      <Name>capitalize</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\condense.vcxproj">
+      <Project>{677B2EDF-79FE-3530-91AF-7C7DF0CE1EE8}</Project>
+      <Name>condense</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\filterkey.vcxproj">
+      <Project>{49DB4519-3474-3DD9-A05D-DBF8813676E9}</Project>
+      <Name>filterkey</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\filterkeydom.vcxproj">
+      <Project>{74DB80C6-DA91-3A97-8618-54A6B9A32D21}</Project>
+      <Name>filterkeydom</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\jsonx.vcxproj">
+      <Project>{84A1E2D5-0549-33E5-A602-EE168C20F741}</Project>
+      <Name>jsonx</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\lookaheadparser.vcxproj">
+      <Project>{92215D41-17DB-3E51-A4CB-861058E73D60}</Project>
+      <Name>lookaheadparser</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\messagereader.vcxproj">
+      <Project>{8BCB2575-5A75-36CF-A3FD-5199C51E3A30}</Project>
+      <Name>messagereader</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\parsebyparts.vcxproj">
+      <Project>{A7B09081-AFEC-3934-8C91-BE6BDE874F28}</Project>
+      <Name>parsebyparts</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\pretty.vcxproj">
+      <Project>{B59DE82A-63E6-36C8-8953-48D9763A90C9}</Project>
+      <Name>pretty</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\prettyauto.vcxproj">
+      <Project>{66195992-8913-3F35-87E6-9A74BD644E32}</Project>
+      <Name>prettyauto</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\schemavalidator.vcxproj">
+      <Project>{BAE4CDFB-1ECB-328E-A4EE-3474AC360F4F}</Project>
+      <Name>schemavalidator</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\serialize.vcxproj">
+      <Project>{534D2B0D-7090-3678-B075-0F7705C83CE3}</Project>
+      <Name>serialize</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\simpledom.vcxproj">
+      <Project>{38E29F09-A31D-31B3-B0D5-0BA4C2BC1082}</Project>
+      <Name>simpledom</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\simplepullreader.vcxproj">
+      <Project>{05D06B3A-DD18-39B0-BE6B-D509300C12D9}</Project>
+      <Name>simplepullreader</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\simplereader.vcxproj">
+      <Project>{55FA4682-42B1-393C-A187-9AC3BD265645}</Project>
+      <Name>simplereader</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\simplewriter.vcxproj">
+      <Project>{246E3889-A931-3388-A4C1-C01D08BB0827}</Project>
+      <Name>simplewriter</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\sortkeys.vcxproj">
+      <Project>{519B1D8E-F152-3AEE-9625-191F50087075}</Project>
+      <Name>sortkeys</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Jim\source\repos\royalty\royalib\ext\json\example\tutorial.vcxproj">
+      <Project>{5BE45745-E4E1-3AC8-AC62-1948F39F48AC}</Project>
+      <Name>tutorial</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
