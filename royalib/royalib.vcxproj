@@ -244,12 +244,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

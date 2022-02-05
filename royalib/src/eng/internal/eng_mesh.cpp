@@ -1,6 +1,8 @@
 #include "../eng_mesh.h"
 #include "../eng_renderer.h"
 
+static Material *WhiteMaterial = NULL ;
+
 MeshVertex::MeshVertex ( ) {
 }
 
@@ -16,12 +18,20 @@ MeshVertex::MeshVertex ( glm::vec4 coord , glm::vec3 norm , glm::vec2 uv ) : coo
 //
 
 Mesh::Mesh ( ) : Component ( COMP_MESH ) {
-	material = NULL;
+	if ( WhiteMaterial == NULL ) {
+		WhiteMaterial = new Material ( );
+		WhiteMaterial->SetAlbedo ( glm::vec4 ( 1.0f , 1.0f , 1.0f , 1.0f ) ) ;
+	}
+	material = WhiteMaterial;
 	transform.SetIdentity ( ) ;
 }
 
 Mesh::Mesh ( const std::vector<MeshVertex> &vertices , const std::vector<unsigned int> &indices ) : Component ( COMP_MESH ) , vertices ( vertices ) , indices ( indices ) {
-	material = NULL;
+	if ( WhiteMaterial == NULL ) {
+		WhiteMaterial = new Material ( );
+		WhiteMaterial->SetAlbedo ( glm::vec4 ( 1.0f , 1.0f , 1.0f , 1.0f ) );
+	}
+	material = WhiteMaterial;
 	transform.SetIdentity ( );
 }
 
