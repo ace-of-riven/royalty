@@ -10,6 +10,7 @@ layout(std140, binding = 0) uniform MaterialProperties {
 uniform sampler2D uTexture [ MAX_FRAG_TEXTURES ] ;
 
 in vec2 uv;
+in vec3 norm;
 
 flat in int MatID ;
 

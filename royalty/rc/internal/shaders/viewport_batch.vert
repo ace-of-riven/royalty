@@ -1,6 +1,7 @@
 layout(location = 0) in vec4 aPos;
-layout(location = 1) in vec2 aUV;
-layout(location = 2) in int aMeshID;
+layout(location = 1) in vec3 aNorm;
+layout(location = 2) in vec2 aUV;
+layout(location = 3) in int aMeshID;
 
 layout(std140, binding = 1) uniform MeshProperties {
 	struct {
@@ -12,6 +13,7 @@ layout(std140, binding = 1) uniform MeshProperties {
 uniform mat4 ProjectionMatrix ;
 
 out vec2 uv;
+out vec3 norm;
 
 flat out int MatID ;
 
@@ -19,6 +21,7 @@ void main ( void ) {
 	gl_Position = ProjectionMatrix * Mesh [ aMeshID ].ModelView * aPos ;
 	
 	uv = aUV ;
+	norm = aNorm ;
 	
 	MatID = Mesh [ aMeshID ].MaterialID ;
 }

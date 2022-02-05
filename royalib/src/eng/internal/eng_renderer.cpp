@@ -24,6 +24,7 @@ ViewportRenderer::ViewportRenderer ( ) {
 
 	GPU_vertformat_from_interface ( format , ViewportBatchShader->shaderface ) ;
 	aPos = GPU_vertformat_attr_id_get ( format , "aPos" );
+	aNorm = GPU_vertformat_attr_id_get ( format , "aNorm" );
 	aUV = GPU_vertformat_attr_id_get ( format , "aUV" );
 	aMeshID = GPU_vertformat_attr_id_get ( format , "aMeshID" );
 
@@ -67,6 +68,8 @@ void ViewportRenderer::Insert ( ViewportRendererBatch *batch , const Mesh *mesh 
 			GPU_vertbuf_attr_set ( batch->vbo , aPos , batch->vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].coord ) );
 		if ( aUV + 1 )
 			GPU_vertbuf_attr_set ( batch->vbo , aUV , batch->vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].uv ) );
+		if ( aNorm + 1 )
+			GPU_vertbuf_attr_set ( batch->vbo , aNorm , batch->vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].norm ) );
 		if ( aMeshID + 1 )
 			GPU_vertbuf_attr_set ( batch->vbo , aMeshID , batch->vertices_count , &batch->mesh_count );
 		batch->vertices_count++;

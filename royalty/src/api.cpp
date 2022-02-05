@@ -14,6 +14,7 @@ public:
 		float dt = deltaTime ;
 		GameObject *obj = ( GameObject * ) GetParent ( ) ;
 		obj->transform.RotateEuler ( glm::radians ( 60.0f * dt ) , 0.25f , 1.0f , 0.0f );
+		printf ( "%.1f\n" , 1.0f / dt ) ;
 	}
 };
 

@@ -44,7 +44,7 @@ class ViewportRenderer {
 	std::vector<const ViewportRendererBatch *> External;
 	std::vector<ViewportRendererBatch *> Batches;
 
-	int aPos , aUV , aMeshID;
+	int aPos , aNorm , aUV , aMeshID;
 protected:
 	void Insert ( ViewportRendererBatch *batch , const Mesh *mesh ) ;
 	void Build ( ViewportRendererBatch *batch ) ;
