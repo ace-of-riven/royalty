@@ -28,6 +28,14 @@ Mesh::Mesh ( const std::vector<MeshVertex> &vertices , const std::vector<unsigne
 Mesh::~Mesh ( ) {
 }
 
+void Mesh::OnInit ( ) {
+	transform.SetParent ( &( ( GameObject * ) GetParent ( ) )->transform ) ;
+}
+
 void Mesh::OnUpdate ( double deltaTime ) {
 	ENG_ViewportRenderer->Push ( this ) ;
+}
+
+void Mesh::OnDestroy ( ) {
+	transform.SetParent ( NULL ) ;
 }

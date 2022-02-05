@@ -11,10 +11,9 @@
 class SampleScript : public Script {
 public:
 	virtual void OnUpdate ( double deltaTime ) {
-		float dt ( deltaTime ) ;
-		for ( auto mesh : *GetParent ( )->GetComponents<Mesh> ( ) ) {
-			( ( Mesh * ) mesh )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f );
-		}
+		float dt = deltaTime ;
+		GameObject *obj = ( GameObject * ) GetParent ( ) ;
+		obj->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f );
 	}
 };
 
