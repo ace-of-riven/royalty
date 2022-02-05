@@ -20,7 +20,6 @@
 class GlobalWindow : public wl::window_main {
 	GPU_Context *ctx;
 	GameObject *obj;
-	Material *mat;
 public:
 	GlobalWindow ( ) ;
 };

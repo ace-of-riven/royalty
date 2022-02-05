@@ -10,6 +10,21 @@ Transform::Transform ( ) {
 Transform::~Transform ( ) {
 }
 
+void Transform::FromMatrix ( const glm::mat4 &matrix ) {
+	glm::quat _rotation;
+	glm::vec3 _skew;
+	glm::vec4 _perspective;
+	glm::decompose ( matrix , scalation , _rotation , position , _skew , _perspective );
+
+	// YXZ
+	glm::vec3 euler = glm::eulerAngles ( _rotation ) * 3.14159f / 180.f;
+
+	printf ( "from matrix : +(%.1f %.1f %.1f) , o(%.1f,%.1f,%.1f) ,*(%.1f,%.1f,%.1f)\n" ,
+		 position.x , position.y , position.z , euler.y , euler.x , euler.z , scalation.x , scalation.y , scalation.z ) ;
+
+	rotation = glm::vec3 ( euler [ 1 ] , euler [ 0 ] , euler [ 2 ] ) ;
+}
+
 void Transform::SetParent ( Transform *transform ) {
 	parent = transform;
 }

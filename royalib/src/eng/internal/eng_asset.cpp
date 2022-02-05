@@ -10,6 +10,11 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+static inline glm::vec3 vec3_cast ( const aiVector3D &v ) { return glm::vec3 ( v.x , v.y , v.z ); }
+static inline glm::vec2 vec2_cast ( const aiVector3D &v ) { return glm::vec2 ( v.x , v.y ); }
+static inline glm::quat quat_cast ( const aiQuaternion &q ) { return glm::quat ( q.w , q.x , q.y , q.z ); }
+static inline glm::mat4 mat4_cast ( const aiMatrix4x4 &m ) { return glm::transpose ( glm::make_mat4 ( &m.a1 ) ); }
+
 struct {
 	std::map<std::string , Texture *> iTexture ;
 } ImportedAssets ;
@@ -41,7 +46,7 @@ Texture *ImportTexture ( const std::string &name ) {
 	return out ;
 }
 
-Mesh *ProcessMesh ( aiMesh *mesh , const aiScene *scene ) {
+Mesh *ProcessMesh ( const glm::mat4 &transform , aiMesh *mesh , const aiScene *scene ) {
 	std::vector<MeshVertex> vertices;
 	std::vector<unsigned int> indices;
 
@@ -74,29 +79,51 @@ Mesh *ProcessMesh ( aiMesh *mesh , const aiScene *scene ) {
 			indices.push_back ( face.mIndices [ j ] );
 	}
 	
-	return new Mesh ( vertices , indices );
+	Mesh *res = new Mesh ( vertices , indices );
+
+	res->transform.FromMatrix ( transform ) ;
+
+	return res;
 }
 
-void ProcessNode ( GameObject *obj , aiNode *node , const aiScene *scene ) {
+void ProcessNode ( const glm::mat4 &transform , GameObject *obj , aiNode *node , const aiScene *scene ) {
+	glm::mat4 curr = transform * mat4_cast ( node->mTransformation ) ;
 	// process all the node's meshes (if any)
 	for ( unsigned int i = 0; i < node->mNumMeshes; i++ ) {
 		aiMesh *mesh = scene->mMeshes [ node->mMeshes [ i ] ];
-		obj->AddComponent<Mesh> ( ProcessMesh ( mesh , scene ) );
+		obj->AddComponent<Mesh> ( ProcessMesh ( curr , mesh , scene ) );
 	}
 	// then do the same for each of its children
 	for ( unsigned int i = 0; i < node->mNumChildren; i++ )
-		ProcessNode ( obj , node->mChildren [ i ] , scene );
+		ProcessNode ( curr , obj , node->mChildren [ i ] , scene );
 }
 
-GameObject *ImportObject ( const std::string &name ) {
+GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &name ) {
 	std::string real = ConvertPath ( name );
 	Assimp::Importer importer;
-	const aiScene *scene = importer.ReadFile ( real , aiProcess_Triangulate | aiProcess_FlipUVs );
+
+	importer.SetPropertyInteger ( AI_CONFIG_PP_SLM_VERTEX_LIMIT , INT16_MAX );
+
+	const aiScene *scene = importer.ReadFile ( real , aiProcess_SplitLargeMeshes | aiProcess_Triangulate | aiProcess_FlipUVs );
 	if ( !scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode ) {
 		printf ( "ERROR::ASSIMP::%s\n" , importer.GetErrorString ( ) );
 		return NULL;
 	}
 	GameObject *obj = new GameObject ( scene->mName.C_Str ( ) ) ;
-	ProcessNode ( obj , scene->mRootNode , scene );
+	ProcessNode ( transform , obj , scene->mRootNode , scene ) ;
 	return obj;
+}
+
+StaticObject *ImportStaticObject ( const glm::mat4 &transform , const std::string &name ) {
+	GameObject *obj = ImportGameObject ( transform , name );
+
+	StaticObject *res = new StaticObject ( obj->GetName ( ) ) ;
+
+	res->Begin ( );
+	res->Push ( obj ) ;
+	res->End ( );
+
+	delete obj;
+
+	return res;
 }

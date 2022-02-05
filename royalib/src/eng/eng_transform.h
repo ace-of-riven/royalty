@@ -12,6 +12,7 @@ public:
 	Transform ( ) ;
 	~Transform ( ) ;
 
+	void FromMatrix ( const glm::mat4 &matrix ) ;
 	void SetParent ( Transform *transform ) ;
 	void SetIdentity ( ) ;
 
