@@ -1,6 +1,7 @@
 #pragma once
 
 #include "eng_proctor.h"
+#include "eng_transform.h"
 
 #include <string>
 
@@ -11,6 +12,8 @@ public:
 	GameObject ( const std::string& name ) ;
 
 	int ComponentStack ( int comp );
+
+	Transform transform;
 
 	inline unsigned int GetID ( ) const { return id; }
 };

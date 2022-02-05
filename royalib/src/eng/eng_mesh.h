@@ -33,7 +33,9 @@ public:
 
 	Transform transform;
 
+	void OnInit ( ) ;
 	void OnUpdate ( double deltaTime );
+	void OnDestroy ( ) ;
 
 	inline const std::vector<MeshVertex> &GetVertices ( ) const { return vertices; }
 	inline const std::vector<unsigned int> &GetIndices ( ) const { return indices; }
