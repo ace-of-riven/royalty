@@ -12,8 +12,9 @@ class SampleScript : public Script {
 public:
 	virtual void OnUpdate ( double deltaTime ) {
 		float dt ( deltaTime ) ;
-		GetParent ( )->GetComponent<Mesh> ( )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f ) ;
-		GetParent ( )->GetComponent<Mesh> ( )->transform.RotateEuler ( glm::radians ( 170.0f * dt ) , 0.0f , 0.0f , 1.0f );
+		for ( auto mesh : *GetParent ( )->GetComponents<Mesh> ( ) ) {
+			( ( Mesh * ) mesh )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , float ( rand ( ) ) / RAND_MAX , float ( rand ( ) ) / RAND_MAX , float ( rand ( ) ) / RAND_MAX );
+		}
 	}
 };
 
@@ -46,12 +47,15 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 		indices.push_back ( 0 ); indices.push_back ( 1 ); indices.push_back ( 2 );
 		indices.push_back ( 2 ); indices.push_back ( 3 ); indices.push_back ( 0 );
 
-		Mesh *mesh = new Mesh ( vertices , indices );
+		for ( int i = 0; i < 8*1024; i++ ) {
+			Mesh *mesh = new Mesh ( vertices , indices );
 
-		mesh->material = new Material ( );
-		mesh->material->SetAlbedo ( glm::vec4 ( 1.0f , 0.5f , 0.0f , 1.0f ) );
+			mesh->material = new Material ( );
+			mesh->material->SetAlbedo ( ImportTexture ( "./rc/assets/Jimbo.jpg" ) );
 
-		obj->AddComponent<Mesh> ( mesh ) ;
+			obj->AddComponent<Mesh> ( mesh );
+		}
+
 		obj->AddComponent<Script> ( new SampleScript ) ;
 
 		wglSwapIntervalEXT ( 0 ) ;

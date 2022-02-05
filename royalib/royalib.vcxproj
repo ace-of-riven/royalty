@@ -26,6 +26,7 @@
     <ClInclude Include="src\base\base_string.h" />
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
+    <ClInclude Include="src\eng\eng_asset.h" />
     <ClInclude Include="src\eng\eng_component.h" />
     <ClInclude Include="src\eng\eng_gameobject.h" />
     <ClInclude Include="src\eng\eng_manager.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
     <ClCompile Include="src\eng\eng_staticobject.cpp" />
+    <ClCompile Include="src\eng\internal\eng_asset.cpp" />
     <ClCompile Include="src\eng\internal\eng_component.cpp" />
     <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
     <ClCompile Include="src\eng\internal\eng_manager.cpp" />
