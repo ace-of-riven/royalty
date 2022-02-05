@@ -14,7 +14,7 @@ protected:
 	void Pop ( Component *component );
 public:
 	Proctor ( ) ;
-	~Proctor ( ) ;
+	virtual ~Proctor ( ) ;
 
 	virtual int ComponentStack ( int comp );
 

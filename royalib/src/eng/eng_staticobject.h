@@ -23,4 +23,7 @@ public:
 	void End ( ) ;
 
 	void OnUpdate ( double deltaTime ) ;
+
+	inline unsigned int GetID ( ) const { return id; }
+	inline const std::string &GetName ( ) const { return name; }
 };

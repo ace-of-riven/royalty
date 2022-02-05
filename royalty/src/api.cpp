@@ -11,10 +11,9 @@
 class SampleScript : public Script {
 public:
 	virtual void OnUpdate ( double deltaTime ) {
-		float dt = deltaTime ;
 		GameObject *obj = ( GameObject * ) GetParent ( ) ;
-		obj->transform.RotateEuler ( glm::radians ( 60.0f * dt ) , 0.25f , 1.0f , 0.0f );
-		printf ( "%.1f\n" , 1.0f / dt ) ;
+		obj->transform.RotateEuler ( glm::radians ( 60.0f * deltaTime ) , 0.25f , 1.0f , 0.0f );
+		// printf ( "%.1lf\n" , 1.0 / deltaTime ) ;
 	}
 };
 
@@ -35,9 +34,9 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		ROYALTY_init ( );
 
-		obj = ImportObject ( "./rc/assets/cube.fbx" );
-		obj->transform.Scale ( 0.25f , 0.25f , 0.25f ) ;
-		obj->AddComponent<Script> ( new SampleScript ( ) ) ;
+		obj = ImportGameObject ( glm::scale ( glm::vec3 ( 1e-3f ) ) , "./rc/assets/axe/source/full.fbx" );
+
+		obj->AddComponent<Script> ( new SampleScript ) ;
 
 		wglSwapIntervalEXT ( 0 ) ;
 		return 0;
@@ -65,8 +64,6 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		GPU_context_active_set ( ctx ) ;
 		glViewport ( 0 , 0 , client.cx , client.cy ) ;
-
-		glPolygonMode ( GL_FRONT_AND_BACK , GL_LINE );
 
 		ROYALTY_update ( );
 

@@ -10,6 +10,7 @@
 #include "../ext/glm/glm/gtx/transform.hpp"
 #include "../ext/glm/glm/gtc/type_ptr.hpp"
 #include "../ext/glm/glm/gtx/euler_angles.hpp"
+#include "../ext/glm/glm/gtx/matrix_decompose.hpp"
 
 #include "../ext/json/include/rapidjson/document.h"
 #include "../ext/json/include/rapidjson/writer.h"

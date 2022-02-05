@@ -7,6 +7,7 @@ class Component {
 	Proctor *parent;
 public:
 	Component ( int identifier ) ;
+	virtual ~Component ( ) = default ;
 
 	inline Proctor *GetParent ( ) const { return parent; }
 	inline int Identifier ( ) const { return identifier; }

@@ -23,8 +23,8 @@
 
 #include "../base/base_file.h"
 
-#define MAX_VERTICES				(16*1024)
-#define MAX_INDICES				(16*1024)
+#define MAX_VERTICES				(64*1024)
+#define MAX_INDICES				(64*1024)
 
 #define MAX_MESHES				(512)
 #define MAX_MATERIALS				(64)
