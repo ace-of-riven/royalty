@@ -13,7 +13,7 @@ public:
 	virtual void OnUpdate ( double deltaTime ) {
 		float dt ( deltaTime ) ;
 		for ( auto mesh : *GetParent ( )->GetComponents<Mesh> ( ) ) {
-			( ( Mesh * ) mesh )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , float ( rand ( ) ) / RAND_MAX , float ( rand ( ) ) / RAND_MAX , float ( rand ( ) ) / RAND_MAX );
+			( ( Mesh * ) mesh )->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f );
 		}
 	}
 };
@@ -35,26 +35,26 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		ROYALTY_init ( );
 
-		GameObject *obj = new GameObject ( "test" ) ;
+		obj = new GameObject ( "test" ) ;
 
 		std::vector<MeshVertex> vertices ;
-		vertices.push_back ( MeshVertex ( glm::vec4 ( -0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 0.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 (  0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 0.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 (  0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 1.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 ( -0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 1.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 ( -1.0f ,  1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 0.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 (  1.0f ,  1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 0.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 (  1.0f , -1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 1.0f ) ) ) ;
+		vertices.push_back ( MeshVertex ( glm::vec4 ( -1.0f , -1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 1.0f ) ) ) ;
 
 		std::vector<unsigned int> indices;
 		indices.push_back ( 0 ); indices.push_back ( 1 ); indices.push_back ( 2 );
 		indices.push_back ( 2 ); indices.push_back ( 3 ); indices.push_back ( 0 );
 
-		for ( int i = 0; i < 8*1024; i++ ) {
-			Mesh *mesh = new Mesh ( vertices , indices );
+		Mesh *mesh = new Mesh ( vertices , indices );
 
-			mesh->material = new Material ( );
-			mesh->material->SetAlbedo ( ImportTexture ( "./rc/assets/Jimbo.jpg" ) );
+		mat = new Material ( );
+		mat->SetAlbedo ( ImportTexture ( "./rc/assets/Jimbo.jpg" ) );
 
-			obj->AddComponent<Mesh> ( mesh );
-		}
+		mesh->material = mat;
+
+		obj->AddComponent<Mesh> ( mesh );
 
 		obj->AddComponent<Script> ( new SampleScript ) ;
 
