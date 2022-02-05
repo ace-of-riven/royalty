@@ -13,12 +13,12 @@ public:
 	virtual void OnUpdate ( double deltaTime ) {
 		float dt = deltaTime ;
 		GameObject *obj = ( GameObject * ) GetParent ( ) ;
-		obj->transform.RotateEuler ( glm::radians ( 360.0f * dt ) , 0.0f , 1.0f , 0.0f );
+		obj->transform.RotateEuler ( glm::radians ( 60.0f * dt ) , 0.25f , 1.0f , 0.0f );
 	}
 };
 
 GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
-	setup.size = { 1280 , 720 } ;
+	setup.size = { 720 , 720 } ;
 	setup.style = WS_OVERLAPPEDWINDOW ;
 	setup.title = L"Royalty" ;
 
@@ -34,28 +34,9 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		ROYALTY_init ( );
 
-		obj = new GameObject ( "test" ) ;
-
-		std::vector<MeshVertex> vertices ;
-		vertices.push_back ( MeshVertex ( glm::vec4 ( -1.0f ,  1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 0.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 (  1.0f ,  1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 0.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 (  1.0f , -1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 1.0f , 1.0f ) ) ) ;
-		vertices.push_back ( MeshVertex ( glm::vec4 ( -1.0f , -1.0f , 0.0f , 1.0f ) , glm::vec3 ( ) , glm::vec2 ( 0.0f , 1.0f ) ) ) ;
-
-		std::vector<unsigned int> indices;
-		indices.push_back ( 0 ); indices.push_back ( 1 ); indices.push_back ( 2 );
-		indices.push_back ( 2 ); indices.push_back ( 3 ); indices.push_back ( 0 );
-
-		Mesh *mesh = new Mesh ( vertices , indices );
-
-		mat = new Material ( );
-		mat->SetAlbedo ( ImportTexture ( "./rc/assets/Jimbo.jpg" ) );
-
-		mesh->material = mat;
-
-		obj->AddComponent<Mesh> ( mesh );
-
-		obj->AddComponent<Script> ( new SampleScript ) ;
+		obj = ImportObject ( "./rc/assets/cube.fbx" );
+		obj->transform.Scale ( 0.25f , 0.25f , 0.25f ) ;
+		obj->AddComponent<Script> ( new SampleScript ( ) ) ;
 
 		wglSwapIntervalEXT ( 0 ) ;
 		return 0;
@@ -83,6 +64,8 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		GPU_context_active_set ( ctx ) ;
 		glViewport ( 0 , 0 , client.cx , client.cy ) ;
+
+		glPolygonMode ( GL_FRONT_AND_BACK , GL_LINE );
 
 		ROYALTY_update ( );
 
