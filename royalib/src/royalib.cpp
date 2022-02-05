@@ -1,3 +1,6 @@
+#define STB_IMAGE_IMPLEMENTATION
+#include "../ext/stb-master/stb_image.h"
+
 #include "royalib.h"
 
 std::chrono::time_point<std::chrono::system_clock> last_upd;

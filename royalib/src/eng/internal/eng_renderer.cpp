@@ -30,9 +30,6 @@ ViewportRenderer::ViewportRenderer ( ) {
 	ViewportMeshProperties = GPU_uniformbuf_create ( sizeof ( ViewportMeshProperties_UBO ) , "MeshProperties" );
 	ViewportMatProperties = GPU_uniformbuf_create ( sizeof ( ViewportMatProperties_UBO ) , "MaterialProperties" );
 
-	printf ( "MeshProperties UBO, size : %lld\n" , sizeof ( ViewportMeshProperties_UBO ) ) ;
-	printf ( "MaterialProperties UBO, size : %lld\n" , sizeof ( ViewportMatProperties_UBO ) ) ;
-
 	delete format;
 }
 

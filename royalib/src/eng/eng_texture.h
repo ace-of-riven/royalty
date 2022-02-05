@@ -8,7 +8,7 @@ class Texture {
 	GPU_Texture *_texture;
 public:
 	Texture ( ) ;
-	Texture ( unsigned int w , unsigned int h , unsigned int channels , const float *data ) ;
+	Texture ( unsigned int w , unsigned int h , unsigned int channels , const unsigned char *data ) ;
 	~Texture ( ) ;
 
 	inline GPU_Texture *GetGPUTexture ( ) const {

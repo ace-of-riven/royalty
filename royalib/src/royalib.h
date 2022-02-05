@@ -37,6 +37,7 @@
 #include "eng/eng_renderer.h"
 #include "eng/eng_script.h"
 #include "eng/eng_mesh.h"
+#include "eng/eng_asset.h"
 
 #include "math/math_matrix.h"
 
