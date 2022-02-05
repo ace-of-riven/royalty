@@ -1,6 +1,9 @@
 #include "../eng_proctor.h"
 #include "../eng_manager.h"
 
+#include "../eng_mesh.h"
+#include "../eng_script.h"
+
 Proctor::Proctor ( ) {
 	ENG_Royalty->Register ( this ) ;
 }
@@ -9,6 +12,16 @@ Proctor::~Proctor ( ) {
 	for ( auto &component_type : components ) {
 		for ( auto &component : component_type.second ) {
 			component->Destroy ( ) ;
+			switch ( component_type.first ) {
+				case COMP_MESH: {
+					delete ( Mesh * ) component ;
+				}break;
+				case COMP_SCRIPT: {
+					delete ( Script * ) component;
+				}break;
+				default:
+					delete component;
+			}
 		}
 	}
 	ENG_Royalty->Destroy ( this );

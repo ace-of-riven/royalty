@@ -250,7 +250,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -341,7 +341,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glew.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glm_static.lib;glew.lib;opengl32.lib;assimp-vc142-mt.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
