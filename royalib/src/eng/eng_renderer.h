@@ -33,38 +33,20 @@
 
 struct ViewportRendererBatch;
 
-typedef std::vector<ViewportRendererBatch *> ViewportBatch;
-
 class ViewportRenderer {
 	GPU_Shader *ViewportBatchShader;
 
 	GPU_UniformBuf *ViewportMeshProperties;
 	GPU_UniformBuf *ViewportMatProperties;
 
-	std::vector<const ViewportRendererBatch *> External;
 	std::vector<ViewportRendererBatch *> Batches;
-
-	int aPos , aNorm , aUV , aMeshID;
-protected:
-	void Insert ( ViewportRendererBatch *batch , const Mesh *mesh ) ;
-	void Build ( ViewportRendererBatch *batch ) ;
-	void Render ( const ViewportRendererBatch *batch ) ;
-
-	ViewportBatch *list;
 public:
 	ViewportRenderer ( ) ;
 	~ViewportRenderer ( ) ;
 
 	void Begin ( ) ;
-	void Push ( const ViewportBatch *list ) ;
-	void Push ( const ViewportRendererBatch *batch ) ;
 	void Push ( const Mesh *mesh ) ;
 	void Flush ( ) ;
-
-	// call with NULL to get a new one
-	ViewportBatch *Begin ( ViewportBatch *batch );
-	void Append ( const Mesh *mesh ) ;
-	void Finish ( void ) ;
 };
 
 extern ViewportRenderer *ENG_ViewportRenderer;

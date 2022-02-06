@@ -10,7 +10,7 @@ layout(std140, binding = 1) uniform MeshProperties {
 	} Mesh [ MAX_MESHES ] ;
 };
 
-uniform mat4 ProjectionMatrix ;
+uniform mat4 ProjectionMatrix ;  
 
 out vec2 uv;
 out vec3 norm;

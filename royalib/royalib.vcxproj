@@ -35,7 +35,6 @@
     <ClInclude Include="src\eng\eng_proctor.h" />
     <ClInclude Include="src\eng\eng_renderer.h" />
     <ClInclude Include="src\eng\eng_script.h" />
-    <ClInclude Include="src\eng\eng_staticobject.h" />
     <ClInclude Include="src\eng\eng_texture.h" />
     <ClInclude Include="src\eng\eng_transform.h" />
     <ClInclude Include="src\eng\internal\eng_viewportbatch.h" />
@@ -149,7 +148,6 @@
     <ClCompile Include="src\base\internal\base_hash.cpp" />
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
-    <ClCompile Include="src\eng\eng_staticobject.cpp" />
     <ClCompile Include="src\eng\internal\eng_asset.cpp" />
     <ClCompile Include="src\eng\internal\eng_component.cpp" />
     <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
@@ -245,7 +243,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -316,7 +314,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glewd.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glm_static.lib;glewd.lib;opengl32.lib;assimp-vc142-mt.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

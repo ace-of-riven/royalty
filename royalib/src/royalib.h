@@ -32,7 +32,6 @@
 #include "eng/eng_manager.h"
 #include "eng/eng_proctor.h"
 #include "eng/eng_gameobject.h"
-#include "eng/eng_staticobject.h"
 #include "eng/eng_component.h"
 #include "eng/eng_renderer.h"
 #include "eng/eng_script.h"
