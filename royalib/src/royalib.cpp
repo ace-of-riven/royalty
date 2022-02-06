@@ -16,7 +16,9 @@ void ROYALTY_update ( ) {
 	double deltaTime = std::chrono::duration<double> ( curr_upd - last_upd ).count ( ) ;
 	GPU_matrix_push ( ) ;
 	GPU_matrix_push_projection ( ) ;
+
 	ENG_Royalty->Update ( deltaTime ) ;
+
 	GPU_matrix_pop_projection ( );
 	GPU_matrix_pop ( );
 	last_upd = curr_upd;
@@ -25,4 +27,34 @@ void ROYALTY_update ( ) {
 void ROYALTY_exit ( ) {
 	delete ENG_ViewportRenderer;
 	delete ENG_Royalty;
+}
+
+//
+
+struct {
+	int mouseX , mouseY ;
+} ROYALTY_global ;
+
+void ROYALTY_MouseUpdate ( int x , int y ) {
+	ROYALTY_global.mouseX = x;
+	ROYALTY_global.mouseY = y;
+}
+
+glm::vec2 ROYALTY_Mouse ( ) {
+	int coords [ 4 ] ;
+	GPU_viewport_size_get_i ( coords ) ;
+	return glm::vec2 ( ( float ( ROYALTY_global.mouseX * 2 ) / coords [ 2 ] ) - 1.0f ,
+			   1.0f - ( float ( ROYALTY_global.mouseY * 2 ) / coords [ 3 ] ) ) ;
+}
+
+float ROYALTY_MouseX ( ) {
+	int coords [ 4 ];
+	GPU_viewport_size_get_i ( coords );
+	return ( float ( ROYALTY_global.mouseX * 2 ) / coords [ 2 ] ) - 1.0f ;
+}
+
+float ROYALTY_MouseY ( ) {
+	int coords [ 4 ];
+	GPU_viewport_size_get_i ( coords );
+	return 1.0f - ( float ( ROYALTY_global.mouseY * 2 ) / coords [ 3 ] ) ;
 }

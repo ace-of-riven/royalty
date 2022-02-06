@@ -492,13 +492,13 @@
     <ClCompile Include="src\eng\internal\eng_material.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
-    <ClCompile Include="src\eng\internal\eng_transform.cpp">
-      <Filter>src\eng</Filter>
-    </ClCompile>
     <ClCompile Include="src\eng\internal\eng_texture.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_asset.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_transform.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>

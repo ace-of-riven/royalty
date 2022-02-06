@@ -43,3 +43,9 @@
 void ROYALTY_init ( ) ;
 void ROYALTY_update ( ) ;
 void ROYALTY_exit ( );
+
+void ROYALTY_MouseUpdate ( int x , int y ) ;
+
+glm::vec2 ROYALTY_Mouse ( ) ;
+float ROYALTY_MouseX ( ) ;
+float ROYALTY_MouseY ( ) ;
