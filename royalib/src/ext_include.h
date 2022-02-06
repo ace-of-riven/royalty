@@ -18,4 +18,7 @@
 #include "../ext/json/include/rapidjson/error/error.h"
 #include "../ext/json/include/rapidjson/error/en.h"
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <reactphysics3d/reactphysics3d.h>
+
 namespace json = rapidjson;

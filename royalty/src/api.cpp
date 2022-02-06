@@ -8,14 +8,7 @@
 
 #include <thread>
 
-class SampleScript : public Script {
-public:
-	virtual void OnUpdate ( double deltaTime ) {
-		GameObject *obj = ( GameObject * ) GetParent ( ) ;
-		obj->transform.RotateEuler ( glm::radians ( 60.0f * deltaTime ) , 0.25f , 1.0f , 0.0f );
-		// printf ( "%.1lf\n" , 1.0 / deltaTime ) ;
-	}
-};
+#include "main/main.h"
 
 GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 	setup.size = { 720 , 720 } ;
@@ -34,9 +27,8 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 		ROYALTY_init ( );
 
-		obj = ImportGameObject ( glm::scale ( glm::vec3 ( 1e-3f ) ) , "./rc/assets/axe/source/full.fbx" );
-
-		obj->AddComponent<Script> ( new SampleScript ) ;
+		dummy = new Proctor ( ) ;
+		dummy->AddComponent<Script> ( new MainScript ) ;
 
 		wglSwapIntervalEXT ( 0 ) ;
 		return 0;
@@ -51,7 +43,8 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 		return 0;
 	} );
 
-	on_message ( WM_MOUSEMOVE , [ = ] ( wl::wm::lbuttondown p ) -> LRESULT {
+	on_message ( WM_MOUSEMOVE , [ = ] ( wl::wm::mousemove p ) -> LRESULT {
+		ROYALTY_MouseUpdate ( p.pos ( ).x , p.pos ( ).y );
 		return 0;
 	} );
 

@@ -7,16 +7,37 @@
     <Filter Include="src\main">
       <UniqueIdentifier>{47aec97b-6db5-405b-bf70-dda2f2fee05e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\main\logic">
+      <UniqueIdentifier>{bd176cb9-9faf-4dfb-9b6e-3dfc14deddf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\main\logic\internal">
+      <UniqueIdentifier>{0b793e21-3de0-48c6-9e4a-3a6207a37093}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\api.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\main\main.h">
+      <Filter>src\main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\logic\level.h">
+      <Filter>src\main\logic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\api.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\main.cpp">
+      <Filter>src\main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\logic\internal\dungeon_tile.cpp">
+      <Filter>src\main\logic\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\logic\internal\dungeon_room.cpp">
+      <Filter>src\main\logic\internal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

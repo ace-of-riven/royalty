@@ -19,9 +19,6 @@ void Transform::FromMatrix ( const glm::mat4 &matrix ) {
 	// YXZ
 	glm::vec3 euler = glm::eulerAngles ( _rotation ) * 3.14159f / 180.f;
 
-	printf ( "from matrix : +(%.1f %.1f %.1f) , o(%.1f,%.1f,%.1f) ,*(%.1f,%.1f,%.1f)\n" ,
-		 position.x , position.y , position.z , euler.y , euler.x , euler.z , scalation.x , scalation.y , scalation.z ) ;
-
 	rotation = glm::vec3 ( euler [ 1 ] , euler [ 0 ] , euler [ 2 ] ) ;
 }
 

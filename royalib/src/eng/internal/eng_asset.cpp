@@ -38,7 +38,7 @@ Texture *ImportTexture ( const std::string &name ) {
 	int width , height , channels;
 	unsigned char *img = stbi_load ( real.c_str ( ) , &width , &height , &channels , 4 ) ;
 	if ( img == NULL ) {
-		printf ( "Error in loading the image\n" );
+		printf ( "Error loading the image\n" );
 		return NULL;
 	}
 	Texture *out = ImportedAssets.iTexture [ real ] = new Texture ( width , height , channels , img ) ;
