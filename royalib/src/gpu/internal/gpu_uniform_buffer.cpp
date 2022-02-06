@@ -26,6 +26,15 @@ void GPU_uniformbuf_update ( GPU_UniformBuf* ubo , const void* data ) {
 	glBindBuffer ( GL_UNIFORM_BUFFER , 0 );
 }
 
+void GPU_uniformbuf_update ( GPU_UniformBuf *ubo , size_t off , const void *data , size_t len ) {
+	if ( ubo->ubo_id == 0 ) {
+		GPU_uniformbuf_init ( ubo );
+	}
+	glBindBuffer ( GL_UNIFORM_BUFFER , ubo->ubo_id );
+	glBufferSubData ( GL_UNIFORM_BUFFER , off , len , data );
+	glBindBuffer ( GL_UNIFORM_BUFFER , 0 );
+}
+
 int GPU_uniformbuf_index ( GPU_UniformBuf* ubo , GPU_ShaderInterface* shaderface ) {
 	return glGetUniformBlockIndex ( shaderface->program , ubo->name ) ;
 }

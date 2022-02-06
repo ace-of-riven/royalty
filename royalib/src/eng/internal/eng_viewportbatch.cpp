@@ -1,6 +1,6 @@
 #include "eng_viewportbatch.h"
 
-ViewportRendererBatch::ViewportRendererBatch ( GPU_Shader *shader ) {
+ViewportRendererBatch::ViewportRendererBatch ( GPU_Shader *shader ) : shader ( shader ) {
 	vbo = GPU_vertbuf_create ( GPUUsageType::GPU_USAGE_DYNAMIC );
 	GPU_vertformat_from_interface ( &vbo->format , shader->shaderface );
 
@@ -14,9 +14,135 @@ ViewportRendererBatch::ViewportRendererBatch ( GPU_Shader *shader ) {
 	vertices_count = 0;
 	indices_count = 0;
 	mesh_count = 0;
+
+	aPos = GPU_vertformat_attr_id_get ( &vbo->format , "aPos" );
+	aNorm = GPU_vertformat_attr_id_get ( &vbo->format , "aNorm" );
+	aUV = GPU_vertformat_attr_id_get ( &vbo->format , "aUV" );
+	aMeshID = GPU_vertformat_attr_id_get ( &vbo->format , "aMeshID" );
+}
+
+ViewportRendererBatch::~ViewportRendererBatch ( ) {
+	if ( batch )
+		GPU_batch_discard ( batch ) ;
+	if ( ibo )
+		GPU_indexbuf_discard ( ibo ) ;
+	if ( vbo )
+		GPU_vertbuf_discard ( vbo );
+	if ( builder->data )
+		free ( builder->data ) ;
+	if ( builder )
+		delete builder;
 }
 
 // updates
+
+void ViewportRendererBatch::Clear ( ) {
+	mat_properties.data.clear ( ) ;
+	mesh_properties.data.clear ( ) ;
+
+	textures.clear ( );
+	materials.clear ( );
+
+	indices_count = 0;
+	vertices_count = 0;
+	mesh_count = 0;
+}
+
+void ViewportRendererBatch::InsertMesh ( const Mesh *mesh ) {
+	unsigned int i_offset = vertices_count;
+
+	int material_id = RegisterMaterial ( mesh->material );
+	int albedo_tex_id = RegisterTexture ( mesh->material->GetAlbedoTexture ( ) );
+
+	if ( mat_properties.data.size ( ) == material_id )
+		mat_properties.data.push_back ( ViewportMatProperties_UBO::Material ( ) ) ;
+	mat_properties.data [ material_id ].albedo_t = albedo_tex_id;
+	mat_properties.data [ material_id ].albedo_c = mesh->material->GetAlbedoColour ( );
+
+	if ( mesh_properties.data.size ( ) == mesh_count )
+		mesh_properties.data.push_back ( ViewportMeshProperties_UBO::Mesh ( ) );
+	mesh_properties.data [ mesh_count ].ModelView = mesh->transform.GetMatrix ( );
+	mesh_properties.data [ mesh_count ].MaterialID = material_id;
+
+	for ( unsigned int v = 0; v < mesh->GetVertices ( ).size ( ); v++ ) {
+		if ( aPos + 1 )
+			GPU_vertbuf_attr_set ( vbo , aPos , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].coord ) );
+		if ( aUV + 1 )
+			GPU_vertbuf_attr_set ( vbo , aUV , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].uv ) );
+		if ( aNorm + 1 )
+			GPU_vertbuf_attr_set ( vbo , aNorm , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].norm ) );
+		if ( aMeshID + 1 )
+			GPU_vertbuf_attr_set ( vbo , aMeshID , vertices_count , &mesh_count );
+		vertices_count++;
+	}
+
+	for ( unsigned int i = 0; i < mesh->GetIndices ( ).size ( ); i++ ) {
+		GPU_indexbuf_add_generic_vert ( builder , i_offset + mesh->GetIndices ( ) [ i ] );
+		indices_count++;
+	}
+
+	mesh_count++;
+}
+
+void ViewportRendererBatch::Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) {
+	if ( indices_count == 0 or vertices_count == 0 or mesh_count == 0 )
+		return;
+
+	// load the indices to the IndexBuffer
+
+	if ( ibo ) {
+		GPU_indexbuf_build_in_place ( builder , ibo );
+	}
+	else {
+		ibo = GPU_indexbuf_build ( builder );
+
+		batch = GPU_batch_create_ex ( GPU_PRIM_TRIS , vbo , ibo , NULL );
+		GPU_batch_program_set_shader ( batch , shader );
+	}
+
+	// we just unloaded the builder so we need to reset it
+
+	{
+		GPU_indexbuf_init_ex ( builder , GPUPrimType::GPU_PRIM_TRIS , MAX_INDICES , MAX_VERTICES );
+	}
+
+	// update the uniform buffers with our own data
+
+	if ( mesh_properties.data.size ( ) )
+		GPU_uniformbuf_update ( mesh_ubo , 0 , &mesh_properties.data [ 0 ] , mesh_properties.data.size ( ) * sizeof ( ViewportMeshProperties_UBO::Mesh ) );
+	if ( mat_properties.data.size ( ) )
+		GPU_uniformbuf_update ( mat_ubo , 0 , &mat_properties.data [ 0 ] , mat_properties.data.size ( ) * sizeof ( ViewportMatProperties_UBO::Material ) );
+}
+
+void ViewportRendererBatch::Render ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) const {
+	if ( indices_count == 0 or vertices_count == 0 or mesh_count == 0 )
+		return;
+
+	GPU_uniformbuf_bind ( mesh_ubo , 1 );
+	GPU_uniformbuf_bind ( mat_ubo , 0 );
+
+	static char u_buffer [ 256 ];
+
+	for ( unsigned int i = 0; i < textures.size ( ); i++ ) {
+		sprintf_s ( u_buffer , 256 , "uTexture[%d]" , i );
+		GPU_texture_bind ( textures [ i ] , i );
+		GPU_batch_uniform_1i ( batch , u_buffer , i );
+	}
+
+	// Apply our transform without editing all the data in the uniform buffers
+	GPU_matrix_push ( ) ;
+	GPU_matrix_mul ( transform ) ;
+
+	GPU_matrix_bind ( shader->shaderface );
+
+	GPU_batch_draw_advanced ( batch , 0 , indices_count , 0 , 0 );
+
+	GPU_matrix_pop ( ) ;
+}
+
+void ViewportRendererBatch::UpdateMatrix ( const glm::mat4 &matrix ) {
+	transform = matrix;
+}
 
 int ViewportRendererBatch::RegisterTexture ( GPU_Texture *in ) {
 	GPU_Texture *texture = ( in ) ? in : GPU_texture_get_empty ( 2 );

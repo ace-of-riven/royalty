@@ -113,17 +113,3 @@ GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &n
 	ProcessNode ( transform , obj , scene->mRootNode , scene ) ;
 	return obj;
 }
-
-StaticObject *ImportStaticObject ( const glm::mat4 &transform , const std::string &name ) {
-	GameObject *obj = ImportGameObject ( transform , name );
-
-	StaticObject *res = new StaticObject ( obj->GetName ( ) ) ;
-
-	res->Begin ( );
-	res->Push ( obj ) ;
-	res->End ( );
-
-	delete obj;
-
-	return res;
-}

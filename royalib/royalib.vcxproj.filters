@@ -385,9 +385,6 @@
     <ClInclude Include="src\eng\internal\eng_viewportbatch.h">
       <Filter>src\eng\internal</Filter>
     </ClInclude>
-    <ClInclude Include="src\eng\eng_staticobject.h">
-      <Filter>src\eng</Filter>
-    </ClInclude>
     <ClInclude Include="src\eng\eng_material.h">
       <Filter>src\eng</Filter>
     </ClInclude>
@@ -490,9 +487,6 @@
       <Filter>src\eng\internal</Filter>
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_viewportbatch.cpp">
-      <Filter>src\eng\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="src\eng\eng_staticobject.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_material.cpp">
