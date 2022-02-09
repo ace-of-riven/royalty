@@ -20,7 +20,10 @@ struct GPU_UniformBuf {
 
 GPU_UniformBuf *GPU_uniformbuf_create ( size_t size , const char *name );
 
+int GPU_uniformbuf_index ( GPU_UniformBuf *ubo , GPU_Shader *shader );
+
 void GPU_uniformbuf_update ( GPU_UniformBuf *ubo , const void* data ) ;
+void GPU_uniformbuf_update ( GPU_UniformBuf *ubo , size_t off , const void *data , size_t len ) ;
 void GPU_uniformbuf_bind ( GPU_UniformBuf* ubo , int slot ) ;
 void GPU_uniformbuf_unbind ( GPU_UniformBuf* ubo ) ;
 

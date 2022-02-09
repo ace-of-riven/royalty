@@ -39,7 +39,7 @@ long long GPU_mem_stats_freemem () {
 }
 
 unsigned int GPU_get_max_textures ( ) {
-	int maxtexturesfrag;
-	glGetIntegerv ( GL_MAX_TEXTURE_IMAGE_UNITS , &maxtexturesfrag );
-	return maxtexturesfrag;
+	int maxtextures;
+	glGetIntegerv ( GL_MAX_TEXTURE_IMAGE_UNITS , &maxtextures );
+	return maxtextures;
 }

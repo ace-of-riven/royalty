@@ -16,7 +16,7 @@
 #include <ratio>
 #include <chrono>
 
-std::chrono::time_point<std::chrono::system_clock> t0 ;
+static std::chrono::time_point<std::chrono::system_clock> t0 ;
 
 namespace wl {
 namespace _wli {
@@ -37,11 +37,6 @@ int run_main(HINSTANCE hInst, int cmdShow) noexcept {
 
 }//namespace _wli
 }//namespace wl
-
-double elapsed ( ) {
-	std::chrono::time_point<std::chrono::system_clock> t1 = std::chrono::system_clock::now ( );
-	return std::chrono::duration<double> ( t1 - t0 ).count ( );
-}
 
 // Instantiates your main class into a generic WinMain function.
 #define RUN(wnd_mainT) \

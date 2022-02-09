@@ -37,14 +37,26 @@ void *DNA_file_read ( const wchar_t *filename , unsigned long long *size ) {
 
 void *DNA_file_read ( const char *filename , unsigned long long *size ) {
 	FILE *in = fopen ( filename , "rb" );
-	return DNA_file_to_str ( in , size );
+	if ( in )
+		return DNA_file_to_str ( in , size );
+	if ( size )
+		*size = 0;
+	return NULL;
 }
 
 void *DNA_file_read_binary ( const char *filename , unsigned long long *size ) {
 	FILE *in = fopen ( filename , "rb" );
-	return DNA_file_to_byes ( in , size );
+	if ( in )
+		return DNA_file_to_byes ( in , size );
+	if ( size )
+		*size = 0;
+	return NULL;
 }
 void *DNA_file_read_binary ( const wchar_t *filename , unsigned long long *size ) {
 	FILE *in = _wfopen ( filename , L"rb" );
-	return DNA_file_to_byes ( in , size );
+	if ( in )
+		return DNA_file_to_byes ( in , size );
+	if ( size )
+		*size = 0;
+	return NULL;
 }

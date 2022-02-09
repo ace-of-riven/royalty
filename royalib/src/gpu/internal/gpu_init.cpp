@@ -6,6 +6,8 @@
 #include "../gpu_init.h"
 #include "../gpu_backend.h"
 
+#include <string>
+
 static bool initialized = false;
 
 static void GPU_is_ok ( const char *val , bool is_ok );
@@ -15,6 +17,8 @@ static void GPU_is_ok ( const char *val , bool is_ok );
 #else
 #define EXTENSION_TO_ARG(i)		(void)i
 #endif
+
+void GLAPIENTRY glMessageCallback ( GLenum source , GLenum type , GLuint id , GLenum severity , GLsizei length , const GLchar *message , const void *userParam );
 
 BOOL wglSwapIntervalEXT ( int i ) {
 	typedef BOOL ( APIENTRY *PFNWGLSWAPINTERVALPROC )( int );
@@ -27,6 +31,11 @@ bool GPU_init ( void ) {
 	}
 
 	GLenum err = glewInit ( );
+
+#ifdef _DEBUG
+	glEnable ( GL_DEBUG_OUTPUT );
+	glDebugMessageCallback ( glMessageCallback , 0 );
+#endif
 
 	if ( GLEW_OK != err ) {
 		/* Problem: glewInit failed, something is seriously wrong. */
@@ -609,4 +618,81 @@ static void GPU_is_ok ( const char *val , bool is_ok ) {
 	}
 
 	CONSOLE_printf_gpu_error ( eGPU_error_level::eGPU_error_information , "!\n" );
+}
+
+void GLAPIENTRY glMessageCallback ( GLenum source , GLenum type , GLuint id , GLenum severity , GLsizei length , const GLchar *message , const void *userParam ) {
+	if ( severity == GL_DEBUG_SEVERITY_HIGH || severity == GL_DEBUG_SEVERITY_MEDIUM || severity == GL_DEBUG_SEVERITY_LOW ) {
+		fprintf ( stdout , "GL_DBG_MSG=" );
+		std::string dbg_msg = "\"";
+
+		switch ( source ) {
+			case GL_DEBUG_SOURCE_API: {
+				dbg_msg += "SOURCE_API ";
+			}break;
+			case GL_DEBUG_SOURCE_WINDOW_SYSTEM: {
+				dbg_msg += "SOURCE_WINDOW_SYSTEM ";
+			}break;
+			case GL_DEBUG_SOURCE_SHADER_COMPILER: {
+				dbg_msg += "SOURCE_SHADER_COMPILER ";
+			}break;
+			case GL_DEBUG_SOURCE_THIRD_PARTY: {
+				dbg_msg += "SOURCE_THIRD_PARTY ";
+			}break;
+			case GL_DEBUG_SOURCE_APPLICATION: {
+				dbg_msg += "SOURCE_APPLICATION ";
+			}break;
+			case GL_DEBUG_SOURCE_OTHER: {
+				dbg_msg += "SOURCE_OTHER ";
+			}break;
+		}
+
+		switch ( type ) {
+			case GL_DEBUG_TYPE_ERROR: {
+				dbg_msg += "ERROR ";
+			}break;
+			case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: {
+				dbg_msg += "DEPRECATED_BEHAVIOR ";
+			}break;
+			case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR: {
+				dbg_msg += "UNDEFINED_BEHAVIOR ";
+			}break;
+			case GL_DEBUG_TYPE_PORTABILITY: {
+				dbg_msg += "PORTABILITY ";
+			}break;
+			case GL_DEBUG_TYPE_PERFORMANCE: {
+				dbg_msg += "PERFORMANCE ";
+			}break;
+			case GL_DEBUG_TYPE_MARKER: {
+				dbg_msg += "MARKER ";
+			}break;
+			case GL_DEBUG_TYPE_PUSH_GROUP: {
+				dbg_msg += "PUSH_GROUP ";
+			}break;
+			case GL_DEBUG_TYPE_POP_GROUP: {
+				dbg_msg += "POP_GROUP ";
+			}break;
+			case GL_DEBUG_TYPE_OTHER: {
+				dbg_msg += "OTHER ";
+			}break;
+		}
+
+		dbg_msg += message;
+
+		dbg_msg += "\"\n";
+
+		switch ( severity ) {
+			case GL_DEBUG_SEVERITY_HIGH: {
+				CONSOLE_printf_gpu_error ( eGPU_error_level::eGPU_error_fatal_error , dbg_msg.c_str ( ) );
+			}break;
+			case GL_DEBUG_SEVERITY_MEDIUM: {
+				CONSOLE_printf_gpu_error ( eGPU_error_level::eGPU_error_warning , dbg_msg.c_str ( ) );
+			}break;
+			case GL_DEBUG_SEVERITY_LOW: {
+				CONSOLE_printf_gpu_error ( eGPU_error_level::eGPU_error_warning , dbg_msg.c_str ( ) );
+			}break;
+			case GL_DEBUG_SEVERITY_NOTIFICATION: {
+				CONSOLE_printf_gpu_error ( eGPU_error_level::eGPU_error_information , dbg_msg.c_str ( ) );
+			}break;
+		}
+	}
 }

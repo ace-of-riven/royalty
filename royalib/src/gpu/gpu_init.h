@@ -1,10 +1,8 @@
 #pragma once
 
-#include <windows.h>
+#include "../ext_include.h"
 
 #include "gpu_defs.h"
-
-#include "../../ext/glew/include/gl/glew.h"
 
 #define DEBUG_NAME_LEN			256
 
