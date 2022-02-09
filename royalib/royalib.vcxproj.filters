@@ -406,6 +406,9 @@
     <ClInclude Include="src\eng\debug\eng_dbg_renderer.h">
       <Filter>src\eng\debug</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\eng_camera.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -515,6 +518,9 @@
     </ClCompile>
     <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp">
       <Filter>src\eng\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_camera.cpp">
+      <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

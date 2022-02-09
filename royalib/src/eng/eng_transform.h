@@ -20,11 +20,13 @@ public:
 	void Move ( float X , float Y , float Z ) ;
 	void Scale ( float X , float Y , float Z ) ;
 
-	glm::vec3 GetLocation ( ) const ;
-
 	Transform operator * ( const Transform &transform ) const ;
 	Transform &operator = ( const Transform &transform );
 	Transform &operator *= ( const Transform &transform );
+
+	inline glm::vec3 Position ( ) const { return position; }
+	inline glm::vec3 Rotation ( ) const { return rotation; }
+	inline glm::vec3 Scalation ( ) const { return scalation; }
 
 	glm::mat4 GetMatrix ( ) const ;
 	glm::mat4 GetLocalMatrix ( ) const ;

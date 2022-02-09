@@ -44,10 +44,6 @@ void Transform::Scale ( float X , float Y , float Z ) {
 	scalation *= glm::vec3 ( X , Y , Z );
 }
 
-glm::vec3 Transform::GetLocation ( ) const {
-	return glm::vec3 ( GetMatrix ( ) * glm::vec4 ( 0.0f , 0.0f , 0.0f , 1.0f ) ) ;
-}
-
 Transform Transform::operator * ( const Transform &transform ) const {
 	Transform result;
 	result.rotation = ( this->rotation + transform.rotation );

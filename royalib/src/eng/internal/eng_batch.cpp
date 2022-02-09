@@ -19,6 +19,8 @@ RendererBatch::RendererBatch ( GPUPrimType prim , GPU_Shader *shader ) : shader 
 	aNorm = GPU_vertformat_attr_id_get ( &vbo->format , "aNorm" );
 	aUV = GPU_vertformat_attr_id_get ( &vbo->format , "aUV" );
 	aMeshID = GPU_vertformat_attr_id_get ( &vbo->format , "aMeshID" );
+
+	transform = glm::mat4 ( 1.0f ) ;
 }
 
 RendererBatch::~RendererBatch ( ) {
