@@ -24,6 +24,9 @@ struct MeshVertex {
 class Mesh : public Component {
 	std::vector<MeshVertex> vertices;
 	std::vector<unsigned int> indices;
+
+	glm::vec3 aaa;
+	glm::vec3 bbb;
 public:
 	Mesh ( ) ;
 	Mesh ( const std::vector<MeshVertex>& vertices , const std::vector<unsigned int>& indices ) ;
@@ -32,6 +35,9 @@ public:
 	Material *material;
 
 	Transform transform;
+
+	glm::vec3 AAA ( ) const ;
+	glm::vec3 BBB ( ) const ;
 
 	void OnInit ( ) ;
 	void OnUpdate ( double deltaTime );

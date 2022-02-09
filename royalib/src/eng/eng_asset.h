@@ -9,4 +9,4 @@
 void ClearAllAssets ( ) ;
 
 Texture *ImportTexture ( const std::string& name ) ;
-GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string& name ) ;
+GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string& name , bool fix = false ) ;
