@@ -26,6 +26,22 @@
     <ClInclude Include="src\base\base_string.h" />
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
+    <ClInclude Include="src\eng\debug\eng_dbg_renderer.h" />
+    <ClInclude Include="src\eng\eng_asset.h" />
+    <ClInclude Include="src\eng\eng_camera.h" />
+    <ClInclude Include="src\eng\eng_component.h" />
+    <ClInclude Include="src\eng\eng_gameobject.h" />
+    <ClInclude Include="src\eng\eng_manager.h" />
+    <ClInclude Include="src\eng\eng_material.h" />
+    <ClInclude Include="src\eng\eng_mesh.h" />
+    <ClInclude Include="src\eng\eng_proctor.h" />
+    <ClInclude Include="src\eng\eng_renderer.h" />
+    <ClInclude Include="src\eng\eng_script.h" />
+    <ClInclude Include="src\eng\eng_staticobject.h" />
+    <ClInclude Include="src\eng\eng_texture.h" />
+    <ClInclude Include="src\eng\eng_transform.h" />
+    <ClInclude Include="src\eng\internal\eng_batch.h" />
+    <ClInclude Include="src\ext_include.h" />
     <ClInclude Include="src\gpu\gpu_backend.h" />
     <ClInclude Include="src\gpu\gpu_batch.h" />
     <ClInclude Include="src\gpu\gpu_context.h" />
@@ -42,7 +58,6 @@
     <ClInclude Include="src\gpu\gpu_uniform_buffer.h" />
     <ClInclude Include="src\gpu\gpu_vertbuff.h" />
     <ClInclude Include="src\gpu\gpu_vertformat.h" />
-    <ClInclude Include="src\math\math_matrix.h" />
     <ClInclude Include="src\royalib.h" />
     <ClInclude Include="src\wm\button.h" />
     <ClInclude Include="src\wm\checkbox.h" />
@@ -136,6 +151,21 @@
     <ClCompile Include="src\base\internal\base_hash.cpp" />
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
+    <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp" />
+    <ClCompile Include="src\eng\internal\eng_asset.cpp" />
+    <ClCompile Include="src\eng\internal\eng_camera.cpp" />
+    <ClCompile Include="src\eng\internal\eng_component.cpp" />
+    <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
+    <ClCompile Include="src\eng\internal\eng_manager.cpp" />
+    <ClCompile Include="src\eng\internal\eng_material.cpp" />
+    <ClCompile Include="src\eng\internal\eng_mesh.cpp" />
+    <ClCompile Include="src\eng\internal\eng_proctor.cpp" />
+    <ClCompile Include="src\eng\internal\eng_renderer.cpp" />
+    <ClCompile Include="src\eng\internal\eng_script.cpp" />
+    <ClCompile Include="src\eng\internal\eng_staticobject.cpp" />
+    <ClCompile Include="src\eng\internal\eng_texture.cpp" />
+    <ClCompile Include="src\eng\internal\eng_transform.cpp" />
+    <ClCompile Include="src\eng\internal\eng_batch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_backend.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_batch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_context.cpp" />
@@ -152,7 +182,7 @@
     <ClCompile Include="src\gpu\internal\gpu_uniform_buffer.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_vertbuff.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_vertformat.cpp" />
-    <ClCompile Include="src\math\interna\math_matrix.cpp" />
+    <ClCompile Include="src\royalib.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -218,13 +248,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -276,7 +306,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -290,7 +320,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glewd.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glm_static.lib;glewd.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -299,7 +329,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -315,7 +345,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glew.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glm_static.lib;glew.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

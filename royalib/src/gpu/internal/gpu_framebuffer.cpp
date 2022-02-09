@@ -632,15 +632,15 @@ void GPU_framebuffer_recursive_downsample ( GPU_Framebuffer *fb ,
 	GPU_Framebuffer *prev_fb = GPU_framebuffer_active_get ( );
 	gpu_framebuffer_current_set ( NULL );
 
-	int levels = floor ( log2 ( max ( (fb->width) , (fb->height) ) ) );
-	max_lvl = min ( max_lvl , levels );
+	int levels = floor ( log2 ( std::max ( (fb->width) , (fb->height) ) ) );
+	max_lvl = std::min ( max_lvl , levels );
 
 	int i;
 	int current_dim [ 2 ] = { fb->width, fb->height };
 	for ( i = 1; i < max_lvl + 1; i++ ) {
 		/* calculate next viewport size */
-		current_dim [ 0 ] = max ( current_dim [ 0 ] / 2 , 1 );
-		current_dim [ 1 ] = max ( current_dim [ 1 ] / 2 , 1 );
+		current_dim [ 0 ] = std::max ( current_dim [ 0 ] / 2 , 1 );
+		current_dim [ 1 ] = std::max ( current_dim [ 1 ] / 2 , 1 );
 
 		for ( int type = 0; type < GPU_FB_MAX_ATTACHEMENT; type++ ) {
 			if ( fb->attachments [ type ].tex != NULL ) {

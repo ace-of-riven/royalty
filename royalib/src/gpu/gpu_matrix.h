@@ -2,12 +2,6 @@
 
 #include "gpu_init.h"
 
-#include "../../ext/glm/glm/glm.hpp"
-#include "../../ext/glm/glm/matrix.hpp"
-#include "../../ext/glm/glm/gtc/matrix_transform.hpp"
-#include "../../ext/glm/glm/gtx/transform.hpp"
-#include "../../ext/glm/glm/gtc/type_ptr.hpp"
-
 void GPU_matrix_reset ( void ) ;
 
 /* ModelView Matrix (2D or 3D) */

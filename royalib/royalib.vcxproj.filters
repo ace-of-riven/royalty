@@ -23,11 +23,14 @@
     <Filter Include="src\base\internal">
       <UniqueIdentifier>{e33413c0-e383-499b-a0f2-ac6398e3aafc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\math">
-      <UniqueIdentifier>{b7abbc91-f2f9-4dbc-9199-6591697cbbce}</UniqueIdentifier>
+    <Filter Include="src\eng">
+      <UniqueIdentifier>{fa6090f4-0875-48ef-8210-9870cb4365ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\math\internal">
-      <UniqueIdentifier>{73a893fe-5527-4775-a44d-7fb8b78731fe}</UniqueIdentifier>
+    <Filter Include="src\eng\internal">
+      <UniqueIdentifier>{cdf791b1-53a1-4588-a365-a381b4d1a463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eng\debug">
+      <UniqueIdentifier>{4145a22a-7b0f-4197-ab10-2773a70cf3a6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -358,8 +361,53 @@
     <ClInclude Include="src\base\base_utildefines.h">
       <Filter>src\base</Filter>
     </ClInclude>
-    <ClInclude Include="src\math\math_matrix.h">
-      <Filter>src\math</Filter>
+    <ClInclude Include="src\ext_include.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_manager.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_component.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_proctor.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_script.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_mesh.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_gameobject.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_renderer.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\internal\eng_batch.h">
+      <Filter>src\eng\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_material.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_transform.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_texture.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_asset.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_staticobject.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\debug\eng_dbg_renderer.h">
+      <Filter>src\eng\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_camera.h">
+      <Filter>src\eng</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -426,8 +474,53 @@
     <ClCompile Include="src\base\internal\base_hash.cpp">
       <Filter>src\base\internal</Filter>
     </ClCompile>
-    <ClCompile Include="src\math\interna\math_matrix.cpp">
-      <Filter>src\math\internal</Filter>
+    <ClCompile Include="src\eng\internal\eng_manager.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_component.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_proctor.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_script.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_mesh.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_gameobject.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\royalib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_renderer.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_batch.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_material.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_texture.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_asset.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_transform.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_staticobject.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp">
+      <Filter>src\eng\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_camera.cpp">
+      <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

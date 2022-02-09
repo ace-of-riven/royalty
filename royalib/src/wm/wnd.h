@@ -40,7 +40,7 @@ public:
 	}
 
 	// Maximize Window
-	void maxmize ( ) const noexcept {
+	void maximize ( ) const noexcept {
 		ShowWindow ( _hWnd , SW_MAXIMIZE );
 	}
 	
@@ -56,6 +56,31 @@ public:
 		RECT rect;
 		GetWindowRect ( _hWnd , &rect );
 		return { rect.right - rect.left , rect.bottom - rect.top };
+	}
+
+	// fullscreen
+	bool fullscreen ( int fullscreenWidth , int fullscreenHeight , int colourBits , int refreshRate ) {
+		DEVMODE fullscreenSettings;
+		bool isChangeSuccessful;
+		RECT windowBoundary;
+
+		EnumDisplaySettings ( NULL , 0 , &fullscreenSettings );
+		fullscreenSettings.dmPelsWidth = fullscreenWidth;
+		fullscreenSettings.dmPelsHeight = fullscreenHeight;
+		fullscreenSettings.dmBitsPerPel = colourBits;
+		fullscreenSettings.dmDisplayFrequency = refreshRate;
+		fullscreenSettings.dmFields = DM_PELSWIDTH |
+			DM_PELSHEIGHT |
+			DM_BITSPERPEL |
+			DM_DISPLAYFREQUENCY;
+
+		SetWindowLongPtr ( _hWnd , GWL_EXSTYLE , WS_EX_APPWINDOW );
+		SetWindowLongPtr ( _hWnd , GWL_STYLE , WS_POPUP | WS_VISIBLE );
+		SetWindowPos ( _hWnd , 0 , 0 , 0 , fullscreenWidth , fullscreenHeight , SWP_SHOWWINDOW );
+		isChangeSuccessful = ChangeDisplaySettings ( &fullscreenSettings , CDS_FULLSCREEN ) == DISP_CHANGE_SUCCESSFUL;
+		ShowWindow ( _hWnd , SW_MAXIMIZE );
+
+		return isChangeSuccessful;
 	}
 
 	// Is Window Shown

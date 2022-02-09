@@ -21,21 +21,11 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\api.h" />
-    <ClInclude Include="src\chess\chess.h" />
+    <ClInclude Include="src\main\main.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\api.cpp" />
-    <ClCompile Include="src\chess\bishop.cpp" />
-    <ClCompile Include="src\chess\evaluate.cpp" />
-    <ClCompile Include="src\chess\execute.cpp" />
-    <ClCompile Include="src\chess\king.cpp" />
-    <ClCompile Include="src\chess\knight.cpp" />
-    <ClCompile Include="src\chess\minimax.cpp" />
-    <ClCompile Include="src\chess\move.cpp" />
-    <ClCompile Include="src\chess\pawn.cpp" />
-    <ClCompile Include="src\chess\queen.cpp" />
-    <ClCompile Include="src\chess\rook.cpp" />
-    <ClCompile Include="src\chess\tree.cpp" />
+    <ClCompile Include="src\main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="royalty.rc" />
@@ -103,12 +93,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <ExternalIncludePath>C:\Users\Jim\source\repos\royalty\royalib\src;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;C:\Users\Jim\source\repos\royalty\royalib\src;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\x64\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <ExternalIncludePath>C:\Users\Jim\source\repos\royalty\royalib\src;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\src;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\x64\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

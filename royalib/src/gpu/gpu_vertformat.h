@@ -2,8 +2,6 @@
 
 #include "gpu_init.h"
 
-#include "../../ext/glm/glm/glm.hpp"
-
 #define GPU_VERT_ATTR_MAX_LEN 16
 #define GPU_VERT_ATTR_MAX_NAMES 6
 #define GPU_VERT_ATTR_NAMES_BUF_LEN 256

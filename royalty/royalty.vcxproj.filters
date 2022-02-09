@@ -4,8 +4,8 @@
     <Filter Include="src">
       <UniqueIdentifier>{95e11437-89df-4463-bf9e-59659217ab41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\chess">
-      <UniqueIdentifier>{86dfadfa-7dfa-4af7-9dfc-6014505104f6}</UniqueIdentifier>
+    <Filter Include="src\main">
+      <UniqueIdentifier>{47aec97b-6db5-405b-bf70-dda2f2fee05e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -13,46 +13,16 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\chess\chess.h">
-      <Filter>src\chess</Filter>
+    <ClInclude Include="src\main\main.h">
+      <Filter>src\main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\api.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\chess\bishop.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\evaluate.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\execute.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\king.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\knight.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\minimax.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\move.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\pawn.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\queen.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\rook.cpp">
-      <Filter>src\chess</Filter>
-    </ClCompile>
-    <ClCompile Include="src\chess\tree.cpp">
-      <Filter>src\chess</Filter>
+    <ClCompile Include="src\main\main.cpp">
+      <Filter>src\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
