@@ -183,7 +183,7 @@ bool RendererBatch::HasSpaceForTexture ( const GPU_Texture *in ) {
 bool RendererBatch::HasSpaceForMaterial ( const Material *material ) {
 	int material_id = materials.size ( ) ;
 	for ( unsigned int i = 0; i < material_id; i++ )
-		if ( materials [ i ] == material )
+		if ( materials [ i ]->MaterialHash ( ) == material->MaterialHash ( ) )
 			material_id = i;
 	// we are gonna have to insert a new one, make sure we have enough empty texture slots
 	if ( material_id == materials.size ( ) ) {

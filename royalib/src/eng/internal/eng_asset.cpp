@@ -7,6 +7,7 @@
 #include "../../../ext/stb-master/stb_image.h"
 
 #include <assimp/Importer.hpp>
+#include <assimp/cimport.h>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
@@ -87,7 +88,12 @@ Mesh *ProcessMesh ( const glm::mat4 &transform , aiMesh *mesh , const aiScene *s
 }
 
 void ProcessNode ( const glm::mat4 &transform , GameObject *obj , aiNode *node , const aiScene *scene ) {
-	glm::mat4 curr = transform * mat4_cast ( node->mTransformation ) ;
+	glm::mat4 curr;
+
+	if ( node == scene->mRootNode )
+		curr = transform * mat4_cast ( node->mTransformation.Inverse ( ) );
+	else
+		curr = transform * mat4_cast ( node->mTransformation );
 	// process all the node's meshes (if any)
 	for ( unsigned int i = 0; i < node->mNumMeshes; i++ ) {
 		aiMesh *mesh = scene->mMeshes [ node->mMeshes [ i ] ];
@@ -98,18 +104,28 @@ void ProcessNode ( const glm::mat4 &transform , GameObject *obj , aiNode *node ,
 		ProcessNode ( curr , obj , node->mChildren [ i ] , scene );
 }
 
-GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &name ) {
+GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &name , bool fix ) {
 	std::string real = ConvertPath ( name );
 	Assimp::Importer importer;
 
 	importer.SetPropertyInteger ( AI_CONFIG_PP_SLM_VERTEX_LIMIT , INT16_MAX );
 
-	const aiScene *scene = importer.ReadFile ( real , aiProcess_SplitLargeMeshes | aiProcess_Triangulate | aiProcess_FlipUVs );
+	const aiScene *scene;
+
+	if ( fix )
+		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_SplitLargeMeshes );
+	else
+		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Quality | aiProcess_SplitLargeMeshes );
+
 	if ( !scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode ) {
 		printf ( "ERROR::ASSIMP::%s\n" , importer.GetErrorString ( ) );
 		return NULL;
 	}
+	
 	GameObject *obj = new GameObject ( scene->mName.C_Str ( ) ) ;
+
 	ProcessNode ( transform , obj , scene->mRootNode , scene ) ;
+
+	importer.FreeScene ( ) ;
 	return obj;
 }

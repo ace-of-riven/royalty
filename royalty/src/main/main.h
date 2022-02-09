@@ -3,7 +3,7 @@
 #include <royalib.h>
 
 class MainScript : public Script {
-	GameObject *player;
+	GameObject *deset_eagle;
 public:
 	void OnInit ( ) ;
 	void OnUpdate ( double deltaTime ) ;

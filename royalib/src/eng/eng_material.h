@@ -20,6 +20,10 @@
 class Material : public Proctor {
 	GPU_Texture *albedo_t;
 	glm::vec4 albedo_c;
+
+	unsigned int hash;
+protected:
+	void UpdateHash ( ) ;
 public:
 	Material ( );
 	~Material ( );
@@ -29,6 +33,8 @@ public:
 	void SetAlbedo ( const Texture *albedo );
 	void SetAlbedo ( glm::vec4 colour );
 	void SetAlbedo ( const Texture *albedo , glm::vec4 colour );
+
+	inline unsigned int MaterialHash ( ) const { return hash; }
 
 	inline GPU_Texture *GetAlbedoTexture ( ) const { return albedo_t; }
 	inline glm::vec4 GetAlbedoColour ( ) const { return albedo_c; }
