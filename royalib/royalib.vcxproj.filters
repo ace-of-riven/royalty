@@ -29,6 +29,9 @@
     <Filter Include="src\eng\internal">
       <UniqueIdentifier>{cdf791b1-53a1-4588-a365-a381b4d1a463}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\eng\debug">
+      <UniqueIdentifier>{4145a22a-7b0f-4197-ab10-2773a70cf3a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\royalib.h">
@@ -382,7 +385,7 @@
     <ClInclude Include="src\eng\eng_renderer.h">
       <Filter>src\eng</Filter>
     </ClInclude>
-    <ClInclude Include="src\eng\internal\eng_viewportbatch.h">
+    <ClInclude Include="src\eng\internal\eng_batch.h">
       <Filter>src\eng\internal</Filter>
     </ClInclude>
     <ClInclude Include="src\eng\eng_material.h">
@@ -396,6 +399,12 @@
     </ClInclude>
     <ClInclude Include="src\eng\eng_asset.h">
       <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\eng_staticobject.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\debug\eng_dbg_renderer.h">
+      <Filter>src\eng\debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -486,7 +495,7 @@
     <ClCompile Include="src\eng\internal\eng_renderer.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
-    <ClCompile Include="src\eng\internal\eng_viewportbatch.cpp">
+    <ClCompile Include="src\eng\internal\eng_batch.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_material.cpp">
@@ -500,6 +509,12 @@
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_transform.cpp">
       <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_staticobject.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp">
+      <Filter>src\eng\debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -29,6 +29,7 @@
 #include "wm/checkbox.h"
 #include "wm/gdi.h"
 
+#include "eng/debug/eng_dbg_renderer.h"
 #include "eng/eng_manager.h"
 #include "eng/eng_proctor.h"
 #include "eng/eng_gameobject.h"
