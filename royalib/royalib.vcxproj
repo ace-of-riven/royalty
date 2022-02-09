@@ -26,6 +26,7 @@
     <ClInclude Include="src\base\base_string.h" />
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
+    <ClInclude Include="src\eng\debug\eng_dbg_renderer.h" />
     <ClInclude Include="src\eng\eng_asset.h" />
     <ClInclude Include="src\eng\eng_component.h" />
     <ClInclude Include="src\eng\eng_gameobject.h" />
@@ -35,9 +36,10 @@
     <ClInclude Include="src\eng\eng_proctor.h" />
     <ClInclude Include="src\eng\eng_renderer.h" />
     <ClInclude Include="src\eng\eng_script.h" />
+    <ClInclude Include="src\eng\eng_staticobject.h" />
     <ClInclude Include="src\eng\eng_texture.h" />
     <ClInclude Include="src\eng\eng_transform.h" />
-    <ClInclude Include="src\eng\internal\eng_viewportbatch.h" />
+    <ClInclude Include="src\eng\internal\eng_batch.h" />
     <ClInclude Include="src\ext_include.h" />
     <ClInclude Include="src\gpu\gpu_backend.h" />
     <ClInclude Include="src\gpu\gpu_batch.h" />
@@ -148,6 +150,7 @@
     <ClCompile Include="src\base\internal\base_hash.cpp" />
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
+    <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp" />
     <ClCompile Include="src\eng\internal\eng_asset.cpp" />
     <ClCompile Include="src\eng\internal\eng_component.cpp" />
     <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
@@ -157,9 +160,10 @@
     <ClCompile Include="src\eng\internal\eng_proctor.cpp" />
     <ClCompile Include="src\eng\internal\eng_renderer.cpp" />
     <ClCompile Include="src\eng\internal\eng_script.cpp" />
+    <ClCompile Include="src\eng\internal\eng_staticobject.cpp" />
     <ClCompile Include="src\eng\internal\eng_texture.cpp" />
     <ClCompile Include="src\eng\internal\eng_transform.cpp" />
-    <ClCompile Include="src\eng\internal\eng_viewportbatch.cpp" />
+    <ClCompile Include="src\eng\internal\eng_batch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_backend.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_batch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_context.cpp" />

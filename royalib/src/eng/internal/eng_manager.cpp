@@ -1,6 +1,7 @@
 #include "../eng_manager.h"
 #include "../eng_proctor.h"
 #include "../eng_renderer.h"
+#include "../debug/eng_dbg_renderer.h"
 
 EngineManager *ENG_Royalty;
 
@@ -17,8 +18,10 @@ void EngineManager::Destroy ( Proctor *proctor ) {
 }
 
 void EngineManager::Update ( double deltaTime ) {
+	ENG_DebugRenderer->Begin ( );
 	ENG_ViewportRenderer->Begin ( ) ;
 	for ( auto &proc : proctors )
 		proc->Update ( deltaTime ) ;
 	ENG_ViewportRenderer->Flush ( );
+	ENG_DebugRenderer->Flush ( );
 }

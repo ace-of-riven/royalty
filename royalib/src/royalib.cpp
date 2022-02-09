@@ -8,6 +8,7 @@ std::chrono::time_point<std::chrono::system_clock> last_upd;
 void ROYALTY_init ( ) {
 	ENG_Royalty = new EngineManager ( );
 	ENG_ViewportRenderer = new ViewportRenderer ( ) ;
+	ENG_DebugRenderer = new DebugRenderer ( ) ;
 	last_upd = std::chrono::system_clock::now ( );
 }
 
@@ -25,6 +26,7 @@ void ROYALTY_update ( ) {
 }
 
 void ROYALTY_exit ( ) {
+	delete ENG_DebugRenderer;
 	delete ENG_ViewportRenderer;
 	delete ENG_Royalty;
 }

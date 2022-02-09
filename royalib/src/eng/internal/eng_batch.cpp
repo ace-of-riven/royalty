@@ -1,12 +1,12 @@
-#include "eng_viewportbatch.h"
+#include "eng_batch.h"
 
-ViewportRendererBatch::ViewportRendererBatch ( GPU_Shader *shader ) : shader ( shader ) {
+RendererBatch::RendererBatch ( GPUPrimType prim , GPU_Shader *shader ) : shader ( shader ) , prim ( prim ) {
 	vbo = GPU_vertbuf_create ( GPUUsageType::GPU_USAGE_DYNAMIC );
 	GPU_vertformat_from_interface ( &vbo->format , shader->shaderface );
 
 	GPU_vertbuf_data_alloc ( vbo , MAX_VERTICES );
 
-	builder = GPU_indexbuf_create_ex ( GPUPrimType::GPU_PRIM_TRIS , MAX_INDICES , MAX_VERTICES );
+	builder = GPU_indexbuf_create_ex ( prim , MAX_INDICES , MAX_VERTICES );
 
 	ibo = NULL;
 	batch = NULL;
@@ -21,7 +21,7 @@ ViewportRendererBatch::ViewportRendererBatch ( GPU_Shader *shader ) : shader ( s
 	aMeshID = GPU_vertformat_attr_id_get ( &vbo->format , "aMeshID" );
 }
 
-ViewportRendererBatch::~ViewportRendererBatch ( ) {
+RendererBatch::~RendererBatch ( ) {
 	if ( batch )
 		GPU_batch_discard ( batch ) ;
 	if ( ibo )
@@ -36,7 +36,7 @@ ViewportRendererBatch::~ViewportRendererBatch ( ) {
 
 // updates
 
-void ViewportRendererBatch::Clear ( ) {
+void RendererBatch::Clear ( ) {
 	mat_properties.data.clear ( ) ;
 	mesh_properties.data.clear ( ) ;
 
@@ -48,19 +48,19 @@ void ViewportRendererBatch::Clear ( ) {
 	mesh_count = 0;
 }
 
-void ViewportRendererBatch::InsertMesh ( const Mesh *mesh ) {
+void RendererBatch::InsertMesh ( const Mesh *mesh ) {
 	unsigned int i_offset = vertices_count;
 
 	int material_id = RegisterMaterial ( mesh->material );
 	int albedo_tex_id = RegisterTexture ( mesh->material->GetAlbedoTexture ( ) );
 
 	if ( mat_properties.data.size ( ) == material_id )
-		mat_properties.data.push_back ( ViewportMatProperties_UBO::Material ( ) ) ;
+		mat_properties.data.push_back ( MatProperties_UBO::Material ( ) ) ;
 	mat_properties.data [ material_id ].albedo_t = albedo_tex_id;
 	mat_properties.data [ material_id ].albedo_c = mesh->material->GetAlbedoColour ( );
 
 	if ( mesh_properties.data.size ( ) == mesh_count )
-		mesh_properties.data.push_back ( ViewportMeshProperties_UBO::Mesh ( ) );
+		mesh_properties.data.push_back ( MeshProperties_UBO::Mesh ( ) );
 	mesh_properties.data [ mesh_count ].ModelView = mesh->transform.GetMatrix ( );
 	mesh_properties.data [ mesh_count ].MaterialID = material_id;
 
@@ -84,7 +84,7 @@ void ViewportRendererBatch::InsertMesh ( const Mesh *mesh ) {
 	mesh_count++;
 }
 
-void ViewportRendererBatch::Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) {
+void RendererBatch::Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) {
 	if ( indices_count == 0 or vertices_count == 0 or mesh_count == 0 )
 		return;
 
@@ -96,25 +96,25 @@ void ViewportRendererBatch::Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *
 	else {
 		ibo = GPU_indexbuf_build ( builder );
 
-		batch = GPU_batch_create_ex ( GPU_PRIM_TRIS , vbo , ibo , NULL );
+		batch = GPU_batch_create_ex ( prim , vbo , ibo , NULL );
 		GPU_batch_program_set_shader ( batch , shader );
 	}
 
 	// we just unloaded the builder so we need to reset it
 
 	{
-		GPU_indexbuf_init_ex ( builder , GPUPrimType::GPU_PRIM_TRIS , MAX_INDICES , MAX_VERTICES );
+		GPU_indexbuf_init_ex ( builder , prim , MAX_INDICES , MAX_VERTICES );
 	}
 
 	// update the uniform buffers with our own data
 
 	if ( mesh_properties.data.size ( ) )
-		GPU_uniformbuf_update ( mesh_ubo , 0 , &mesh_properties.data [ 0 ] , mesh_properties.data.size ( ) * sizeof ( ViewportMeshProperties_UBO::Mesh ) );
+		GPU_uniformbuf_update ( mesh_ubo , 0 , &mesh_properties.data [ 0 ] , mesh_properties.data.size ( ) * sizeof ( MeshProperties_UBO::Mesh ) );
 	if ( mat_properties.data.size ( ) )
-		GPU_uniformbuf_update ( mat_ubo , 0 , &mat_properties.data [ 0 ] , mat_properties.data.size ( ) * sizeof ( ViewportMatProperties_UBO::Material ) );
+		GPU_uniformbuf_update ( mat_ubo , 0 , &mat_properties.data [ 0 ] , mat_properties.data.size ( ) * sizeof ( MatProperties_UBO::Material ) );
 }
 
-void ViewportRendererBatch::Render ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) const {
+void RendererBatch::Render ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) const {
 	if ( indices_count == 0 or vertices_count == 0 or mesh_count == 0 )
 		return;
 
@@ -140,11 +140,11 @@ void ViewportRendererBatch::Render ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *
 	GPU_matrix_pop ( ) ;
 }
 
-void ViewportRendererBatch::UpdateMatrix ( const glm::mat4 &matrix ) {
+void RendererBatch::UpdateMatrix ( const glm::mat4 &matrix ) {
 	transform = matrix;
 }
 
-int ViewportRendererBatch::RegisterTexture ( GPU_Texture *in ) {
+int RendererBatch::RegisterTexture ( GPU_Texture *in ) {
 	GPU_Texture *texture = ( in ) ? in : GPU_texture_get_empty ( 2 );
 	int texture_id = textures.size ( );
 	for ( unsigned int i = 0; i < texture_id; i++ )
@@ -155,7 +155,7 @@ int ViewportRendererBatch::RegisterTexture ( GPU_Texture *in ) {
 	return texture_id ;
 }
 
-int ViewportRendererBatch::RegisterMaterial ( Material *material ) {
+int RendererBatch::RegisterMaterial ( Material *material ) {
 	int material_id = materials.size ( );
 	for ( unsigned int i = 0; i < material_id; i++ )
 		if ( materials [ i ] == material )
@@ -167,7 +167,7 @@ int ViewportRendererBatch::RegisterMaterial ( Material *material ) {
 
 // queries
 
-bool ViewportRendererBatch::HasSpaceForTexture ( const GPU_Texture *in ) {
+bool RendererBatch::HasSpaceForTexture ( const GPU_Texture *in ) {
 	const GPU_Texture *texture = ( in ) ? in : GPU_texture_get_empty ( 2 ) ;
 	int texture_id = textures.size ( );
 	for ( unsigned int i = 0; i < texture_id; i++ )
@@ -178,7 +178,7 @@ bool ViewportRendererBatch::HasSpaceForTexture ( const GPU_Texture *in ) {
 	return false;
 }
 
-bool ViewportRendererBatch::HasSpaceForMaterial ( const Material *material ) {
+bool RendererBatch::HasSpaceForMaterial ( const Material *material ) {
 	int material_id = materials.size ( ) ;
 	for ( unsigned int i = 0; i < material_id; i++ )
 		if ( materials [ i ] == material )
@@ -194,7 +194,7 @@ bool ViewportRendererBatch::HasSpaceForMaterial ( const Material *material ) {
 	return false;
 }
 
-bool ViewportRendererBatch::HasSpaceForMesh ( const Mesh *mesh ) {
+bool RendererBatch::HasSpaceForMesh ( const Mesh *mesh ) {
 	if ( vertices_count + mesh->GetVertices ( ).size ( ) >= MAX_VERTICES or
 	     indices_count + mesh->GetIndices ( ).size ( ) >= MAX_INDICES or
 	     mesh_count >= MAX_MESHES ) {

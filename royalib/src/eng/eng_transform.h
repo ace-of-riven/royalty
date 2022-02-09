@@ -20,6 +20,8 @@ public:
 	void Move ( float X , float Y , float Z ) ;
 	void Scale ( float X , float Y , float Z ) ;
 
+	glm::vec3 GetLocation ( ) const ;
+
 	Transform operator * ( const Transform &transform ) const ;
 	Transform &operator = ( const Transform &transform );
 	Transform &operator *= ( const Transform &transform );

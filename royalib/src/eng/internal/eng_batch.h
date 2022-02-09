@@ -2,7 +2,7 @@
 
 #include "../eng_renderer.h"
 
-struct ViewportMeshProperties_UBO {
+struct MeshProperties_UBO {
 	struct Mesh {
 		glm::mat4 ModelView;
 		int MaterialID;			// material id
@@ -12,7 +12,7 @@ struct ViewportMeshProperties_UBO {
 	std::vector<Mesh> data;
 };
 
-struct ViewportMatProperties_UBO {
+struct MatProperties_UBO {
 	struct Material {
 		glm::vec4 albedo_c;		// albedo colour
 		int albedo_t;			// albedo texture
@@ -22,7 +22,7 @@ struct ViewportMatProperties_UBO {
 	std::vector<Material> data;
 };
 
-class ViewportRendererBatch {
+class RendererBatch {
 	GPU_Shader *shader;
 
 	GPU_VertBuf *vbo;
@@ -31,8 +31,10 @@ class ViewportRendererBatch {
 
 	GPU_IndexBufBuilder *builder;
 
-	ViewportMeshProperties_UBO mesh_properties;
-	ViewportMatProperties_UBO mat_properties;
+	MeshProperties_UBO mesh_properties;
+	MatProperties_UBO mat_properties;
+
+	GPUPrimType prim;
 
 	std::vector<Material *> materials;
 
@@ -50,8 +52,8 @@ protected:
 	// Attention this does not register the material's textures
 	int RegisterMaterial ( Material *material );
 public:
-	ViewportRendererBatch ( GPU_Shader *shader );
-	~ViewportRendererBatch ( ) ;
+	RendererBatch ( GPUPrimType prim , GPU_Shader *shader );
+	~RendererBatch ( ) ;
 
 	void Clear ( ) ;
 	void InsertMesh ( const Mesh *mesh ) ;

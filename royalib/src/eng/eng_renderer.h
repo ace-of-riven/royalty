@@ -27,11 +27,11 @@
 #define MAX_INDICES				(64*1024)
 
 #define MAX_MESHES				(512)
-#define MAX_MATERIALS				(64)
+#define MAX_MATERIALS				(32)
 #define MAX_BONES				(512)
 #define MAX_LIGHTS				(512)
 
-struct ViewportRendererBatch;
+class RendererBatch;
 
 class ViewportRenderer {
 	GPU_Shader *ViewportBatchShader;
@@ -39,14 +39,18 @@ class ViewportRenderer {
 	GPU_UniformBuf *ViewportMeshProperties;
 	GPU_UniformBuf *ViewportMatProperties;
 
-	std::vector<ViewportRendererBatch *> Batches;
+	std::vector<RendererBatch *> Batches;
+	std::vector<RendererBatch *> External;
 public:
 	ViewportRenderer ( ) ;
 	~ViewportRenderer ( ) ;
 
 	void Begin ( ) ;
 	void Push ( const Mesh *mesh ) ;
+	void Push ( RendererBatch *batch ) ;
 	void Flush ( ) ;
+
+	inline GPU_Shader *GetShader ( ) const { return ViewportBatchShader; }
 };
 
 extern ViewportRenderer *ENG_ViewportRenderer;

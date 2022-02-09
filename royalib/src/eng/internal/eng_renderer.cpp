@@ -1,6 +1,6 @@
 #include "../eng_renderer.h"
 
-#include "eng_viewportbatch.h"
+#include "eng_batch.h"
 
 ViewportRenderer *ENG_ViewportRenderer;
 
@@ -20,8 +20,8 @@ ViewportRenderer::ViewportRenderer ( ) {
 	free ( ViewportBatchShader_VS ) ;
 	free ( ViewportBatchShader_FS ) ;
 
-	ViewportMeshProperties = GPU_uniformbuf_create ( MAX_MESHES * sizeof ( ViewportMeshProperties_UBO::Mesh ) , "MeshProperties" );
-	ViewportMatProperties = GPU_uniformbuf_create ( MAX_MATERIALS * sizeof ( ViewportMatProperties_UBO::Material ) , "MaterialProperties" );
+	ViewportMeshProperties = GPU_uniformbuf_create ( MAX_MESHES * sizeof ( MeshProperties_UBO::Mesh ) , "MeshProperties" );
+	ViewportMatProperties = GPU_uniformbuf_create ( MAX_MATERIALS * sizeof ( MatProperties_UBO::Material ) , "MaterialProperties" );
 }
 
 ViewportRenderer::~ViewportRenderer ( ) {
@@ -34,6 +34,7 @@ void ViewportRenderer::Begin ( ) {
 	for ( auto batch : Batches ) {
 		batch->Clear ( ) ;
 	}
+	External.clear ( ) ;
 }
 
 void ViewportRenderer::Push ( const Mesh *mesh ) {
@@ -45,11 +46,15 @@ void ViewportRenderer::Push ( const Mesh *mesh ) {
 
 	// check if batch list filled
 	if ( CurrentBatch == Batches.size ( ) )
-		Batches.push_back ( new ViewportRendererBatch ( ViewportBatchShader ) );
+		Batches.push_back ( new RendererBatch ( GPU_PRIM_TRIS , ViewportBatchShader ) );
 
-	ViewportRendererBatch *batch = Batches [ CurrentBatch ]; // select the new one if there was one selected
+	RendererBatch *batch = Batches [ CurrentBatch ]; // select the new one if there was one selected
 
 	batch->InsertMesh ( mesh ) ;
+}
+
+void ViewportRenderer::Push ( RendererBatch *batch ) {
+	External.push_back ( batch ) ;
 }
 
 void ViewportRenderer::Flush ( ) {
@@ -62,5 +67,10 @@ void ViewportRenderer::Flush ( ) {
 	for ( unsigned int i = 0; i < Batches.size ( ); i++ ) {
 		Batches [ i ]->Upload ( ViewportMeshProperties , ViewportMatProperties ) ;
 		Batches [ i ]->Render ( ViewportMeshProperties , ViewportMatProperties ) ;
+	}
+
+	for ( unsigned int i = 0; i < External.size ( ); i++ ) {
+		External [ i ]->Upload ( ViewportMeshProperties , ViewportMatProperties );
+		External [ i ]->Render ( ViewportMeshProperties , ViewportMatProperties );
 	}
 }
