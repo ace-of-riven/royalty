@@ -31,6 +31,7 @@
     <ClInclude Include="src\eng\eng_camera.h" />
     <ClInclude Include="src\eng\eng_component.h" />
     <ClInclude Include="src\eng\eng_gameobject.h" />
+    <ClInclude Include="src\eng\eng_light.h" />
     <ClInclude Include="src\eng\eng_manager.h" />
     <ClInclude Include="src\eng\eng_material.h" />
     <ClInclude Include="src\eng\eng_mesh.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\eng\internal\eng_camera.cpp" />
     <ClCompile Include="src\eng\internal\eng_component.cpp" />
     <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
+    <ClCompile Include="src\eng\internal\eng_light.cpp" />
     <ClCompile Include="src\eng\internal\eng_manager.cpp" />
     <ClCompile Include="src\eng\internal\eng_material.cpp" />
     <ClCompile Include="src\eng\internal\eng_mesh.cpp" />

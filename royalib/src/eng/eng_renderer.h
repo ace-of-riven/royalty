@@ -5,6 +5,7 @@
 #include "eng_gameobject.h"
 #include "eng_mesh.h"
 #include "eng_script.h"
+#include "eng_light.h"
 #include "eng_material.h"
 
 #include "../gpu/gpu_init.h"
@@ -33,11 +34,29 @@
 
 class RendererBatch;
 
+struct LightProperties_UBO {
+	struct Light {
+		ALIGN_STD140 glm::vec3 location;		// light caster position
+		ALIGN_STD140 glm::vec3 colour;			// light caster colour
+		ALIGN_STD140 glm::vec3 attenuation;		// light caster attenuation
+		ALIGN_STD140 glm::vec3 direction;		// light caster direction
+		ALIGN_STD140 float cutOff;			// light cut off angle
+		ALIGN_STD140 float outerCutOff;			// light outer cut off angle
+	};
+	ALIGN_STD140 int light_count;				// lights counter
+
+	// add this to a vector so that everytime we copy this to the GPU we only copy the data that we actually need
+	std::vector<Light> data;
+};
+
 class ViewportRenderer {
 	GPU_Shader *ViewportBatchShader;
 
+	LightProperties_UBO light_properties;
+
 	GPU_UniformBuf *ViewportMeshProperties;
 	GPU_UniformBuf *ViewportMatProperties;
+	GPU_UniformBuf *ViewportLightProperties;
 
 	std::vector<RendererBatch *> Batches;
 	std::vector<RendererBatch *> External;
@@ -47,6 +66,7 @@ public:
 
 	void Begin ( ) ;
 	void Push ( const Mesh *mesh ) ;
+	void Push ( const Light *light ) ;
 	void Push ( RendererBatch *batch ) ;
 	void Flush ( ) ;
 

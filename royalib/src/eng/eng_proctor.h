@@ -1,11 +1,16 @@
 #pragma once
 
+#include "../ext_include.h"
+
 #include "eng_component.h"
+#include "eng_transform.h"
 
 #include <map>
 #include <vector>
 
 #define PROCTOR_MAX			(SHRT_MAX*16)
+
+#define ALIGN_STD140			__declspec( align( 16 ) )
 
 class Proctor {
 	std::map<int , std::vector<Component *>> components;
@@ -21,6 +26,8 @@ public:
 	virtual void OnUpdate ( double deltaTime ) { }
 
 	void Update ( double deltaTime ) ;
+
+	Transform transform;
 
 	// get
 

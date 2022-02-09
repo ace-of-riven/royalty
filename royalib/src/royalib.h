@@ -38,6 +38,8 @@
 #include "eng/eng_script.h"
 #include "eng/eng_mesh.h"
 #include "eng/eng_asset.h"
+#include "eng/eng_light.h"
+#include "eng/eng_camera.h"
 
 #include "math/math_matrix.h"
 

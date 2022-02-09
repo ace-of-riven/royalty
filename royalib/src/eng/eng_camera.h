@@ -13,8 +13,6 @@ public:
 
 	int ComponentStack ( int comp );
 
-	Transform transform;
-
 	void OnUpdate ( double deltaTime );
 
 	void SetFOV ( float fov );

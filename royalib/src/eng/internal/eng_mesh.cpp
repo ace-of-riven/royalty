@@ -66,7 +66,7 @@ glm::vec3 Mesh::BBB ( ) const {
 }
 
 void Mesh::OnInit ( ) {
-	transform.SetParent ( &( ( GameObject * ) GetParent ( ) )->transform ) ;
+	transform.SetParent ( &GetParent ( )->transform ) ;
 }
 
 void Mesh::OnUpdate ( double deltaTime ) {

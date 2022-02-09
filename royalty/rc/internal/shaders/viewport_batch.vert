@@ -12,9 +12,11 @@ layout(std140, binding = 1) uniform MeshProperties {
 
 uniform mat4 ProjectionMatrix ;  
 uniform mat4 ModelViewMatrix ; 
+uniform mat3 NormalMatrix ; 
 
 out vec2 uv;
 out vec3 norm;
+out vec3 pos;
 
 flat out int MatID ;
 
@@ -22,7 +24,8 @@ void main ( void ) {
 	gl_Position = ProjectionMatrix * ModelViewMatrix * Mesh [ aMeshID ].ModelView * aPos ;
 	
 	uv = aUV ;
-	norm = aNorm ;
+	norm = vec3 ( NormalMatrix * aNorm ) ;
+	pos = vec3 ( ModelViewMatrix * Mesh [ aMeshID ].ModelView * aPos ) ;
 	
 	MatID = Mesh [ aMeshID ].MaterialID ;
 }

@@ -4,9 +4,8 @@
 
 struct MeshProperties_UBO {
 	struct Mesh {
-		glm::mat4 ModelView;
-		int MaterialID;			// material id
-		int _p0 , _p1 , _p2;		// padding
+		ALIGN_STD140 glm::mat4 ModelView;
+		ALIGN_STD140 int MaterialID;			// material id
 	} ;
 	// add this to a vector so that everytime we copy this to the GPU we only copy the data that we actually need
 	std::vector<Mesh> data;
@@ -14,9 +13,8 @@ struct MeshProperties_UBO {
 
 struct MatProperties_UBO {
 	struct Material {
-		glm::vec4 albedo_c;		// albedo colour
-		int albedo_t;			// albedo texture
-		int _p0 , _p1 , _p2 ;		// padding
+		ALIGN_STD140 glm::vec4 albedo_c;		// albedo colour
+		ALIGN_STD140 int albedo_t;			// albedo texture
 	} ;
 	// add this to a vector so that everytime we copy this to the GPU we only copy the data that we actually need
 	std::vector<Material> data;

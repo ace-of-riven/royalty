@@ -22,6 +22,7 @@ ViewportRenderer::ViewportRenderer ( ) {
 
 	ViewportMeshProperties = GPU_uniformbuf_create ( MAX_MESHES * sizeof ( MeshProperties_UBO::Mesh ) , "MeshProperties" );
 	ViewportMatProperties = GPU_uniformbuf_create ( MAX_MATERIALS * sizeof ( MatProperties_UBO::Material ) , "MaterialProperties" );
+	ViewportLightProperties = GPU_uniformbuf_create ( 16 + MAX_LIGHTS * sizeof ( LightProperties_UBO::Light ) , "LightProperties" );
 }
 
 ViewportRenderer::~ViewportRenderer ( ) {
@@ -34,7 +35,26 @@ void ViewportRenderer::Begin ( ) {
 	for ( auto batch : Batches ) {
 		batch->Clear ( ) ;
 	}
+
+	light_properties.light_count = 0;
+	light_properties.data.clear ( );
+
 	External.clear ( ) ;
+}
+
+void ViewportRenderer::Push ( const Light *light ) {
+	if ( light_properties.light_count + 1 < MAX_LIGHTS ) {
+		LightProperties_UBO::Light l;
+		l.location = light->transform.GetMatrix ( ) * glm::vec4 ( 0.0f , 0.0f , 0.0f , 1.0f );
+		l.attenuation = light->GetAttenuation ( );
+		l.colour = light->GetColour ( );
+		l.direction = light->transform.GetMatrix ( ) * glm::vec4 ( 0.0f , 0.0f , -1.0f , 1.0f );
+		l.cutOff = light->GetCutOffAngle ( );
+		l.outerCutOff = light->GetOuterCutOffAngle ( );
+
+		light_properties.data.push_back ( l ) ;
+		light_properties.light_count++;
+	}
 }
 
 void ViewportRenderer::Push ( const Mesh *mesh ) {
@@ -63,6 +83,12 @@ void ViewportRenderer::Flush ( ) {
 	GPU_depth_test ( true ) ;
 
 	GPU_shader_use ( ViewportBatchShader );
+
+	GPU_uniformbuf_bind ( ViewportLightProperties , 2 );
+
+	GPU_uniformbuf_update ( ViewportLightProperties , 0 , &light_properties.light_count , sizeof ( int ) );
+	if ( light_properties.data.size ( ) )
+		GPU_uniformbuf_update ( ViewportLightProperties , 16 , &light_properties.data [ 0 ] , light_properties.data.size ( ) * sizeof ( MeshProperties_UBO::Mesh ) );
 
 	for ( unsigned int i = 0; i < Batches.size ( ); i++ ) {
 		Batches [ i ]->Upload ( ViewportMeshProperties , ViewportMatProperties ) ;
