@@ -11,7 +11,7 @@
 #include "main/main.h"
 
 GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
-	setup.size = { 720 , 720 } ;
+	setup.size = { 1280 , 720 } ;
 	setup.style = WS_OVERLAPPEDWINDOW ;
 	setup.title = L"Royalty" ;
 
@@ -36,6 +36,9 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 
 	on_message ( WM_DESTROY , [ = ] ( wl::wm::create p ) -> LRESULT {
 		ROYALTY_exit ( );
+		printf ( "\nPress any button to exit...\n" ) ;
+		getchar ( );
+		exit ( 0 ) ;
 		return 0;
 	} );
 

@@ -34,29 +34,38 @@ void ROYALTY_exit ( ) {
 //
 
 struct {
-	int mouseX , mouseY ;
+	struct {
+		int x , y;
+		int dx , dy;
+	} mouse ;
 } ROYALTY_global ;
 
 void ROYALTY_MouseUpdate ( int x , int y ) {
-	ROYALTY_global.mouseX = x;
-	ROYALTY_global.mouseY = y;
+	ROYALTY_global.mouse.dx = x - ROYALTY_global.mouse.x;
+	ROYALTY_global.mouse.dy = y - ROYALTY_global.mouse.y;
+	ROYALTY_global.mouse.x = x;
+	ROYALTY_global.mouse.y = y;
 }
 
 glm::vec2 ROYALTY_Mouse ( ) {
-	int coords [ 4 ] ;
-	GPU_viewport_size_get_i ( coords ) ;
-	return glm::vec2 ( ( float ( ROYALTY_global.mouseX * 2 ) / coords [ 2 ] ) - 1.0f ,
-			   1.0f - ( float ( ROYALTY_global.mouseY * 2 ) / coords [ 3 ] ) ) ;
+	int coords [ 4 ];
+	GPU_viewport_size_get_i ( coords );
+	return glm::vec2 ( ( float ( ROYALTY_global.mouse.x * 2 ) / coords [ 2 ] ) - 1.0f ,
+			   1.0f - ( float ( ROYALTY_global.mouse.y * 2 ) / coords [ 3 ] ) );
+}
+
+glm::vec2 ROYALTY_DeltaMouse ( ) {
+	return glm::vec2 ( ROYALTY_global.mouse.dx , -ROYALTY_global.mouse.dy ) ;
 }
 
 float ROYALTY_MouseX ( ) {
 	int coords [ 4 ];
 	GPU_viewport_size_get_i ( coords );
-	return ( float ( ROYALTY_global.mouseX * 2 ) / coords [ 2 ] ) - 1.0f ;
+	return ( float ( ROYALTY_global.mouse.x * 2 ) / coords [ 2 ] ) - 1.0f ;
 }
 
 float ROYALTY_MouseY ( ) {
 	int coords [ 4 ];
 	GPU_viewport_size_get_i ( coords );
-	return 1.0f - ( float ( ROYALTY_global.mouseY * 2 ) / coords [ 3 ] ) ;
+	return 1.0f - ( float ( ROYALTY_global.mouse.y * 2 ) / coords [ 3 ] ) ;
 }

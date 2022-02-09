@@ -28,6 +28,7 @@
     <ClInclude Include="src\console.h" />
     <ClInclude Include="src\eng\debug\eng_dbg_renderer.h" />
     <ClInclude Include="src\eng\eng_asset.h" />
+    <ClInclude Include="src\eng\eng_camera.h" />
     <ClInclude Include="src\eng\eng_component.h" />
     <ClInclude Include="src\eng\eng_gameobject.h" />
     <ClInclude Include="src\eng\eng_manager.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="src\console.cpp" />
     <ClCompile Include="src\eng\debug\eng_dbg_renderer.cpp" />
     <ClCompile Include="src\eng\internal\eng_asset.cpp" />
+    <ClCompile Include="src\eng\internal\eng_camera.cpp" />
     <ClCompile Include="src\eng\internal\eng_component.cpp" />
     <ClCompile Include="src\eng\internal\eng_gameobject.cpp" />
     <ClCompile Include="src\eng\internal\eng_manager.cpp" />
