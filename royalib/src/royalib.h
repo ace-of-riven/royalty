@@ -47,6 +47,8 @@ void ROYALTY_init ( ) ;
 void ROYALTY_update ( ) ;
 void ROYALTY_exit ( );
 
+double ROYALTY_time ( ) ;
+
 void ROYALTY_MouseUpdate ( int x , int y ) ;
 
 glm::vec2 ROYALTY_Mouse ( ) ;

@@ -31,10 +31,10 @@ vec3 ComputeLight ( int off , vec3 colour ) {
 	vec3 lightDir = normalize ( Lights [ off ].Location - pos );
 	float theta = dot ( lightDir , normalize ( -Lights [ off ].Direction ) ) ;
 	// remember that we're working with angles as cosines instead of degrees so a '>' is used.
-	if(theta < Lights [ off ].cutOff)
+	if( Lights [ off ].cutOff <= 0 || theta > Lights [ off ].cutOff)
 	{
 		float dist = length ( Lights [ off ].Location - pos ) ;
-		float mul = 1.0 / ( Lights [ off ].Attenuation.x * dist +Lights [ off ].Attenuation.y * dist * dist + Lights [ off ].Attenuation.z * dist * dist * dist ) ;
+		float mul = 1.0 / ( Lights [ off ].Attenuation.x * dist + Lights [ off ].Attenuation.y * dist * dist + Lights [ off ].Attenuation.z * dist * dist * dist ) ;
 		
 		vec3 N = normalize(norm);
         float diff = max(dot(norm, lightDir), 0.0);

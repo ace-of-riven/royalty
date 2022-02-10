@@ -156,10 +156,13 @@ GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &n
 
 	const aiScene *scene;
 
+	unsigned long long settings = aiProcess_PopulateArmatureData | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights ;
+	unsigned long long loading = aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_GenUVCoords | aiProcess_GlobalScale ;
+
 	if ( fix )
-		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_PopulateArmatureData | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
+		scene = importer.ReadFile ( real , settings | loading );
 	else
-		scene = importer.ReadFile ( real , aiProcess_Triangulate | aiProcess_PopulateArmatureData | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
+		scene = importer.ReadFile ( real , settings | loading );
 
 	if ( !scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode ) {
 		printf ( "ERROR::ASSIMP::%s\n" , importer.GetErrorString ( ) );

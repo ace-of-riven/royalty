@@ -253,12 +253,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\zlib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\include;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\zlib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\BINARIES\x64\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\assimp\BINARIES\x64\lib\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -324,7 +324,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glewd.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
+      <AdditionalDependencies>zlibstatic.lib;glm_static.lib;glewd.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -349,7 +349,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalDependencies>glm_static.lib;glew.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
+      <AdditionalDependencies>zlibstatic.lib;glm_static.lib;glew.lib;opengl32.lib;assimp-vc142-mt.lib;reactphysics3d.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

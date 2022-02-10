@@ -1,0 +1,8 @@
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/zlib.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/zlibstatic.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/example.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/minigzip.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/INSTALL.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/RUN_TESTS.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/ALL_BUILD.dir
+C:/Users/Jim/source/repos/royalty/royalib/ext/zlib/CMakeFiles/ZERO_CHECK.dir
