@@ -6,6 +6,10 @@ Bone::Bone ( const std::string &name , int ID , const glm::mat4 &offset ) : Name
 Bone::~Bone ( ) {
 }
 
+void Bone::SetTransform ( const glm::mat4& transform ) {
+	TransformMatrix = transform;
+}
+
 //
 
 Skeleton::Skeleton ( ) : Component ( COMP_SKELETON ) {

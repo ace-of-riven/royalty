@@ -49,6 +49,16 @@ Texture *ImportTexture ( const std::string &name ) {
 	return out ;
 }
 
+// returns the final transform after applying all the trasnforms of this node's parents
+glm::mat4 ProcessSkeletonTransform ( const Skeleton *skeleton , const aiNode *node ) {
+	if ( node )
+		if ( skeleton->GetBone ( node->mName.C_Str ( ) ) )
+			return ProcessSkeletonTransform ( skeleton , node->mParent ) * mat4_cast ( node->mTransformation );
+		else
+			return glm::mat4 ( 1.0f );
+	return glm::mat4 ( 1.0f ) ;
+}
+
 Mesh *ProcessMesh ( const glm::mat4 &transform , GameObject *obj , aiMesh *mesh , const aiScene *scene ) {
 	std::vector<MeshVertex> vertices;
 	std::vector<unsigned int> indices;
@@ -89,8 +99,15 @@ Mesh *ProcessMesh ( const glm::mat4 &transform , GameObject *obj , aiMesh *mesh 
 		Skeleton *skeleton = obj->GetComponent<Skeleton> ( );
 		if ( skeleton == NULL )
 			obj->AddComponent<Skeleton> ( skeleton = new Skeleton ( ) ) ;
+		// register the all the bones
 		for ( unsigned int i = 0; i < mesh->mNumBones; i++ ) {
-			unsigned int bone_id = skeleton->GetBone_ensure ( mesh->mBones [ i ]->mName.C_Str ( ) , mat4_cast ( mesh->mBones [ i ]->mOffsetMatrix ) )->GetID ( ) ;
+			skeleton->GetBone_ensure ( mesh->mBones [ i ]->mName.C_Str ( ) , mat4_cast ( mesh->mBones [ i ]->mOffsetMatrix ) );
+		}
+		for ( unsigned int i = 0; i < mesh->mNumBones; i++ ) {
+			Bone *mBONE = skeleton->GetBone_ensure ( mesh->mBones [ i ]->mName.C_Str ( ) , mat4_cast ( mesh->mBones [ i ]->mOffsetMatrix ) );
+
+			mBONE->SetTransform ( ProcessSkeletonTransform ( skeleton , mesh->mBones [ i ]->mNode ) ) ;
+
 			for ( unsigned int j = 0; j < mesh->mBones [ i ]->mNumWeights; j++ ) {
 				float w = mesh->mBones [ i ]->mWeights [ j ].mWeight ;
 				unsigned int v = mesh->mBones [ i ]->mWeights [ j ].mVertexId ;
@@ -98,7 +115,7 @@ Mesh *ProcessMesh ( const glm::mat4 &transform , GameObject *obj , aiMesh *mesh 
 				// assign this bone to the first empty slot in the vertex `v`
 				for ( int k = 0; k < 4; k++ ) {
 					if ( vertices [ v ].bone_i [ k ] == -1 ) {
-						vertices [ v ].bone_i [ k ] = bone_id;
+						vertices [ v ].bone_i [ k ] = mBONE->GetID ( );
 						vertices [ v ].bone_w [ k ] = w;
 						break;
 					}
@@ -140,15 +157,15 @@ GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &n
 	const aiScene *scene;
 
 	if ( fix )
-		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
+		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_PopulateArmatureData | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
 	else
-		scene = importer.ReadFile ( real , aiProcess_Triangulate | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
+		scene = importer.ReadFile ( real , aiProcess_Triangulate | aiProcess_PopulateArmatureData | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
 
 	if ( !scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode ) {
 		printf ( "ERROR::ASSIMP::%s\n" , importer.GetErrorString ( ) );
 		return NULL;
 	}
-	
+
 	GameObject *obj = new GameObject ( scene->mName.C_Str ( ) ) ;
 
 	ProcessNode ( transform , obj , scene->mRootNode , scene ) ;

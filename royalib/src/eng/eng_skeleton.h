@@ -17,9 +17,11 @@ public:
 	Bone ( const std::string& name , int ID , const glm::mat4& offset );
 	~Bone ( );
 
+	void SetTransform ( const glm::mat4 &transform );
+
 	inline int GetID ( ) const { return ID; }
 	inline const std::string& GetName ( ) const { return Name; }
-	inline const glm::mat4 &GetMatrix ( ) const { return OffsetMatrix * TransformMatrix ; }
+	inline const glm::mat4 &GetMatrix ( ) const { return TransformMatrix * OffsetMatrix ; }
 };
 
 class Skeleton : public Component {
