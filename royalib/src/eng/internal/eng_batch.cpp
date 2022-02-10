@@ -17,6 +17,8 @@ RendererBatch::RendererBatch ( GPUPrimType prim , GPU_Shader *shader ) : shader 
 
 	aPos = GPU_vertformat_attr_id_get ( &vbo->format , "aPos" );
 	aNorm = GPU_vertformat_attr_id_get ( &vbo->format , "aNorm" );
+	aBoneI = GPU_vertformat_attr_id_get ( &vbo->format , "aBoneI" );
+	aBoneW = GPU_vertformat_attr_id_get ( &vbo->format , "aBoneW" );
 	aUV = GPU_vertformat_attr_id_get ( &vbo->format , "aUV" );
 	aMeshID = GPU_vertformat_attr_id_get ( &vbo->format , "aMeshID" );
 
@@ -44,10 +46,35 @@ void RendererBatch::Clear ( ) {
 
 	textures.clear ( );
 	materials.clear ( );
+	skeletons.clear ( );
 
+	bones_count = 0;
 	indices_count = 0;
 	vertices_count = 0;
 	mesh_count = 0;
+}
+
+bool RendererBatch::SelectSkeleton ( const Skeleton *skeleton ) {
+	if ( skeleton ) {
+		auto skeli_itr = skeletons.find ( skeleton );
+		if ( skeli_itr != skeletons.end ( ) ) {
+			skeleton_offset = skeli_itr->second;
+		}
+		else {
+			// not enough space
+			if ( bones_count + skeleton->GetBoneCount ( ) >= MAX_BONES )
+				return false;
+
+			skeleton_offset = skeletons [ skeleton ] = bones_count;
+			for ( unsigned int bone = 0; bone < skeleton->GetBoneCount ( ); bone++ ) {
+				mesh_properties.skeleton.Bones [ bones_count++ ] = skeleton->GetBone ( bone )->GetMatrix ( );
+			}
+		}
+	}
+	else {
+		skeleton_offset = 0;
+	}
+	return true;
 }
 
 void RendererBatch::InsertMesh ( const Mesh *mesh ) {
@@ -67,12 +94,21 @@ void RendererBatch::InsertMesh ( const Mesh *mesh ) {
 	mesh_properties.data [ mesh_count ].MaterialID = material_id;
 
 	for ( unsigned int v = 0; v < mesh->GetVertices ( ).size ( ); v++ ) {
+		glm::ivec4 bone_i = mesh->GetVertices ( ) [ v ].bone_i ;
+
+		for ( unsigned int i = 0; i < 4; i++ )
+			if ( bone_i [ i ] != -1 ) bone_i [ i ] += skeleton_offset;
+
 		if ( aPos + 1 )
 			GPU_vertbuf_attr_set ( vbo , aPos , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].coord ) );
 		if ( aUV + 1 )
 			GPU_vertbuf_attr_set ( vbo , aUV , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].uv ) );
 		if ( aNorm + 1 )
 			GPU_vertbuf_attr_set ( vbo , aNorm , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].norm ) );
+		if ( aBoneI + 1 )
+			GPU_vertbuf_attr_set ( vbo , aBoneI , vertices_count , glm::value_ptr ( bone_i ) );
+		if ( aBoneW + 1 )
+			GPU_vertbuf_attr_set ( vbo , aBoneW , vertices_count , glm::value_ptr ( mesh->GetVertices ( ) [ v ].bone_w ) );
 		if ( aMeshID + 1 )
 			GPU_vertbuf_attr_set ( vbo , aMeshID , vertices_count , &mesh_count );
 		vertices_count++;
@@ -111,7 +147,10 @@ void RendererBatch::Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo 
 	// update the uniform buffers with our own data
 
 	if ( mesh_properties.data.size ( ) )
-		GPU_uniformbuf_update ( mesh_ubo , 0 , &mesh_properties.data [ 0 ] , mesh_properties.data.size ( ) * sizeof ( MeshProperties_UBO::Mesh ) );
+		GPU_uniformbuf_update ( mesh_ubo , sizeof ( MeshProperties_UBO::Skeleton ) , &mesh_properties.data [ 0 ] , mesh_properties.data.size ( ) * sizeof ( MeshProperties_UBO::Mesh ) );
+	if ( bones_count )
+		GPU_uniformbuf_update ( mesh_ubo , 0 , &mesh_properties.skeleton , sizeof ( glm::mat4 ) * bones_count );
+
 	if ( mat_properties.data.size ( ) )
 		GPU_uniformbuf_update ( mat_ubo , 0 , &mat_properties.data [ 0 ] , mat_properties.data.size ( ) * sizeof ( MatProperties_UBO::Material ) );
 }

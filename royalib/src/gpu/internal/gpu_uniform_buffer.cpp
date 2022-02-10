@@ -3,6 +3,8 @@
 #include "../gpu_uniform_buffer.h"
 #include "../gpu_context.h"
 
+#include <cassert>
+
 static void GPU_uniformbuf_init ( GPU_UniformBuf* ubo ) {
 	glGenBuffers ( 1 , &ubo->ubo_id );
 	glBindBuffer ( GL_UNIFORM_BUFFER , ubo->ubo_id );
@@ -27,6 +29,7 @@ void GPU_uniformbuf_update ( GPU_UniformBuf* ubo , const void* data ) {
 }
 
 void GPU_uniformbuf_update ( GPU_UniformBuf *ubo , size_t off , const void *data , size_t len ) {
+	assert ( off + len < ubo->size_in_bytes ) ;
 	if ( ubo->ubo_id == 0 ) {
 		GPU_uniformbuf_init ( ubo );
 	}

@@ -3,6 +3,7 @@
 #include "eng_component.h"
 #include "eng_proctor.h"
 #include "eng_gameobject.h"
+#include "eng_skeleton.h"
 #include "eng_mesh.h"
 #include "eng_script.h"
 #include "eng_light.h"
@@ -27,7 +28,7 @@
 #define MAX_VERTICES				(512*1024)
 #define MAX_INDICES				(512*1024)
 
-#define MAX_MESHES				(512)
+#define MAX_MESHES				(256)
 #define MAX_MATERIALS				(32)
 #define MAX_BONES				(512)
 #define MAX_LIGHTS				(512)
@@ -66,6 +67,7 @@ public:
 
 	void Begin ( ) ;
 	void Push ( const Mesh *mesh ) ;
+	void Push ( const Skeleton *skeleton , const Mesh *mesh ) ;
 	void Push ( const Light *light ) ;
 	void Push ( RendererBatch *batch ) ;
 	void Flush ( ) ;

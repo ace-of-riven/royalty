@@ -1,12 +1,20 @@
 #pragma once
 
 #include "../eng_renderer.h"
+#include "../eng_skeleton.h"
 
 struct MeshProperties_UBO {
+	struct Skeleton {
+		ALIGN_STD140 glm::mat4 Bones [ MAX_BONES ];
+	};
+
 	struct Mesh {
 		ALIGN_STD140 glm::mat4 ModelView;
 		ALIGN_STD140 int MaterialID;			// material id
 	} ;
+
+	Skeleton skeleton;
+
 	// add this to a vector so that everytime we copy this to the GPU we only copy the data that we actually need
 	std::vector<Mesh> data;
 };
@@ -41,10 +49,16 @@ class RendererBatch {
 	unsigned int indices_count;
 	unsigned int vertices_count;
 	unsigned int mesh_count;
+	unsigned int bones_count;
+
+	// current skeleton bone offsets
+	unsigned int skeleton_offset;
+
+	std::map<const Skeleton * , unsigned int> skeletons;
 
 	glm::mat4 transform;
 
-	int aPos , aNorm , aUV , aMeshID;
+	int aPos , aNorm , aUV , aMeshID , aBoneI , aBoneW;
 protected:
 	int RegisterTexture ( GPU_Texture *texture );
 	// Attention this does not register the material's textures
@@ -52,6 +66,8 @@ protected:
 public:
 	RendererBatch ( GPUPrimType prim , GPU_Shader *shader );
 	~RendererBatch ( ) ;
+
+	bool SelectSkeleton ( const Skeleton *skeleton ) ;
 
 	void Clear ( ) ;
 	void InsertMesh ( const Mesh *mesh ) ;

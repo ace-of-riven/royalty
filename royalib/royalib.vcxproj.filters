@@ -412,6 +412,9 @@
     <ClInclude Include="src\eng\eng_light.h">
       <Filter>src\eng</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\eng_skeleton.h">
+      <Filter>src\eng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -526,6 +529,9 @@
       <Filter>src\eng\internal</Filter>
     </ClCompile>
     <ClCompile Include="src\eng\internal\eng_light.cpp">
+      <Filter>src\eng\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\internal\eng_skeleton.cpp">
       <Filter>src\eng\internal</Filter>
     </ClCompile>
   </ItemGroup>

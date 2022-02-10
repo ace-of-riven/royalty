@@ -20,7 +20,9 @@ ViewportRenderer::ViewportRenderer ( ) {
 	free ( ViewportBatchShader_VS ) ;
 	free ( ViewportBatchShader_FS ) ;
 
-	ViewportMeshProperties = GPU_uniformbuf_create ( MAX_MESHES * sizeof ( MeshProperties_UBO::Mesh ) , "MeshProperties" );
+	ViewportMeshProperties = GPU_uniformbuf_create ( sizeof ( MeshProperties_UBO::Skeleton ) +
+							 sizeof ( MeshProperties_UBO::Mesh ) * MAX_MESHES , "MeshProperties" );
+
 	ViewportMatProperties = GPU_uniformbuf_create ( MAX_MATERIALS * sizeof ( MatProperties_UBO::Material ) , "MaterialProperties" );
 	ViewportLightProperties = GPU_uniformbuf_create ( 16 + MAX_LIGHTS * sizeof ( LightProperties_UBO::Light ) , "LightProperties" );
 }
@@ -71,6 +73,22 @@ void ViewportRenderer::Push ( const Mesh *mesh ) {
 	RendererBatch *batch = Batches [ CurrentBatch ]; // select the new one if there was one selected
 
 	batch->InsertMesh ( mesh ) ;
+}
+
+void ViewportRenderer::Push ( const Skeleton *skeleton , const Mesh *mesh ) {
+	int CurrentBatch = Batches.size ( );
+
+	for ( unsigned int i = 0; i < CurrentBatch; i++ )
+		if ( Batches [ i ]->HasSpaceForMesh ( mesh ) && Batches [ i ]->SelectSkeleton ( skeleton ) )
+			CurrentBatch = i;
+
+	// check if batch list filled
+	if ( CurrentBatch == Batches.size ( ) )
+		Batches.push_back ( new RendererBatch ( GPU_PRIM_TRIS , ViewportBatchShader ) );
+
+	RendererBatch *batch = Batches [ CurrentBatch ]; // select the new one if there was one selected
+
+	batch->InsertMesh ( mesh );
 }
 
 void ViewportRenderer::Push ( RendererBatch *batch ) {

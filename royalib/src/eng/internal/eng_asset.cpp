@@ -1,5 +1,7 @@
 #include "../eng_asset.h"
 
+#include "../eng_renderer.h"
+
 #include <stdlib.h> 
 #include <stdio.h>
 #include <map>
@@ -47,7 +49,7 @@ Texture *ImportTexture ( const std::string &name ) {
 	return out ;
 }
 
-Mesh *ProcessMesh ( const glm::mat4 &transform , aiMesh *mesh , const aiScene *scene ) {
+Mesh *ProcessMesh ( const glm::mat4 &transform , GameObject *obj , aiMesh *mesh , const aiScene *scene ) {
 	std::vector<MeshVertex> vertices;
 	std::vector<unsigned int> indices;
 
@@ -64,6 +66,9 @@ Mesh *ProcessMesh ( const glm::mat4 &transform , aiMesh *mesh , const aiScene *s
 		vertex.norm.y = mesh->mNormals [ i ].y;
 		vertex.norm.z = mesh->mNormals [ i ].z;
 
+		vertex.bone_i [ 0 ] = vertex.bone_i [ 1 ] = vertex.bone_i [ 2 ] = vertex.bone_i [ 3 ] = -1;
+		vertex.bone_w [ 0 ] = vertex.bone_w [ 1 ] = vertex.bone_w [ 2 ] = vertex.bone_w [ 3 ] = 0.0f;
+
 		// does the mesh contain texture coordinates? 
 		if ( mesh->mTextureCoords [ 0 ] ) {
 			vertex.uv.x = mesh->mTextureCoords [ 0 ][ i ].x;
@@ -78,6 +83,28 @@ Mesh *ProcessMesh ( const glm::mat4 &transform , aiMesh *mesh , const aiScene *s
 		aiFace face = mesh->mFaces [ i ];
 		for ( unsigned int j = 0; j < face.mNumIndices; j++ )
 			indices.push_back ( face.mIndices [ j ] );
+	}
+
+	if ( mesh->HasBones ( ) ) {
+		Skeleton *skeleton = obj->GetComponent<Skeleton> ( );
+		if ( skeleton == NULL )
+			obj->AddComponent<Skeleton> ( skeleton = new Skeleton ( ) ) ;
+		for ( unsigned int i = 0; i < mesh->mNumBones; i++ ) {
+			unsigned int bone_id = skeleton->GetBone_ensure ( mesh->mBones [ i ]->mName.C_Str ( ) , mat4_cast ( mesh->mBones [ i ]->mOffsetMatrix ) )->GetID ( ) ;
+			for ( unsigned int j = 0; j < mesh->mBones [ i ]->mNumWeights; j++ ) {
+				float w = mesh->mBones [ i ]->mWeights [ j ].mWeight ;
+				unsigned int v = mesh->mBones [ i ]->mWeights [ j ].mVertexId ;
+
+				// assign this bone to the first empty slot in the vertex `v`
+				for ( int k = 0; k < 4; k++ ) {
+					if ( vertices [ v ].bone_i [ k ] == -1 ) {
+						vertices [ v ].bone_i [ k ] = bone_id;
+						vertices [ v ].bone_w [ k ] = w;
+						break;
+					}
+				}
+			}
+		}
 	}
 	
 	Mesh *res = new Mesh ( vertices , indices );
@@ -97,7 +124,7 @@ void ProcessNode ( const glm::mat4 &transform , GameObject *obj , aiNode *node ,
 	// process all the node's meshes (if any)
 	for ( unsigned int i = 0; i < node->mNumMeshes; i++ ) {
 		aiMesh *mesh = scene->mMeshes [ node->mMeshes [ i ] ];
-		obj->AddComponent<Mesh> ( ProcessMesh ( curr , mesh , scene ) );
+		obj->AddComponent<Mesh> ( ProcessMesh ( curr , obj , mesh , scene ) );
 	}
 	// then do the same for each of its children
 	for ( unsigned int i = 0; i < node->mNumChildren; i++ )
@@ -108,14 +135,14 @@ GameObject *ImportGameObject ( const glm::mat4 &transform , const std::string &n
 	std::string real = ConvertPath ( name );
 	Assimp::Importer importer;
 
-	importer.SetPropertyInteger ( AI_CONFIG_PP_SLM_VERTEX_LIMIT , INT16_MAX );
+	importer.SetPropertyInteger ( AI_CONFIG_PP_SLM_VERTEX_LIMIT , MAX_VERTICES );
 
 	const aiScene *scene;
 
 	if ( fix )
-		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_SplitLargeMeshes );
+		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Fast | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
 	else
-		scene = importer.ReadFile ( real , aiProcessPreset_TargetRealtime_Quality | aiProcess_SplitLargeMeshes );
+		scene = importer.ReadFile ( real , aiProcess_Triangulate | aiProcess_SplitLargeMeshes | aiProcess_LimitBoneWeights );
 
 	if ( !scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode ) {
 		printf ( "ERROR::ASSIMP::%s\n" , importer.GetErrorString ( ) );

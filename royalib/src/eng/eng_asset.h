@@ -3,6 +3,7 @@
 #include "eng_texture.h"
 #include "eng_gameobject.h"
 #include "eng_mesh.h"
+#include "eng_skeleton.h"
 
 #include <string>
 

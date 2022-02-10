@@ -38,6 +38,7 @@
     <ClInclude Include="src\eng\eng_proctor.h" />
     <ClInclude Include="src\eng\eng_renderer.h" />
     <ClInclude Include="src\eng\eng_script.h" />
+    <ClInclude Include="src\eng\eng_skeleton.h" />
     <ClInclude Include="src\eng\eng_staticobject.h" />
     <ClInclude Include="src\eng\eng_texture.h" />
     <ClInclude Include="src\eng\eng_transform.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\eng\internal\eng_proctor.cpp" />
     <ClCompile Include="src\eng\internal\eng_renderer.cpp" />
     <ClCompile Include="src\eng\internal\eng_script.cpp" />
+    <ClCompile Include="src\eng\internal\eng_skeleton.cpp" />
     <ClCompile Include="src\eng\internal\eng_staticobject.cpp" />
     <ClCompile Include="src\eng\internal\eng_texture.cpp" />
     <ClCompile Include="src\eng\internal\eng_transform.cpp" />

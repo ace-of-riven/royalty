@@ -7,6 +7,7 @@ int GameObject::ComponentStack ( int comp ) {
 		case COMP_SCRIPT: return PROCTOR_MAX;
 		case COMP_MESH: return PROCTOR_MAX;
 		case COMP_LIGHT: return PROCTOR_MAX;
+		case COMP_SKELETON: return 1;
 	}
 	return 0;
 }
