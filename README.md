@@ -69,9 +69,9 @@ This is a sample backend game engine project in c++ using opengl and win32.
    git clone https://github.com/jimcodeman/royalty.git
    ```
 2. Configure you visual studio
-	- [ ] Preprocessor : _CRT_SECURE_NO_WARNINGS
-	- [ ] Libraries : royalty.lib ( indluced )
-	- [ ] Binaries : glew.dll
+	- [ ] Preprocessor : `_CRT_SECURE_NO_WARNINGS`
+	- [ ] Libraries : `royalty.lib` ( indluced )
+	- [ ] Binaries : `glew.dll`
 3. Enjoy
 
 <p align="right">(<a href="#top">back to top</a>)</p>
