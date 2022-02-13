@@ -403,6 +403,12 @@
     <ClInclude Include="src\eng\core\material.h">
       <Filter>src\eng\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\core\camera.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\core\gameobject.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -500,6 +506,12 @@
     </ClCompile>
     <ClCompile Include="src\eng\renderer\renderer.cpp">
       <Filter>src\eng\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\camera.cpp">
+      <Filter>src\eng\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\gameobject.cpp">
+      <Filter>src\eng\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

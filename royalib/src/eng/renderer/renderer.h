@@ -42,7 +42,7 @@ public:
 	~Renderer ( ) ;
 
 	void Begin ( ) ;
-	void Submit ( const Mesh *mesh ) ;
+	void Submit ( const Transform& transform , const Mesh *mesh ) ;
 	void Submit ( Batch *external ) ;
 	void Flush ( ) ;
 };

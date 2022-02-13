@@ -36,7 +36,7 @@ void Renderer::Begin ( ) {
 	external.clear ( );
 }
 
-void Renderer::Submit ( const Mesh *mesh ) {
+void Renderer::Submit ( const Transform &transform , const Mesh *mesh ) {
 	int CurrentBatch = batches.size ( );
 
 	for ( unsigned int i = 0; i < CurrentBatch; i++ )
@@ -49,7 +49,7 @@ void Renderer::Submit ( const Mesh *mesh ) {
 
 	Batch *batch = batches [ CurrentBatch ]; // select the new one if there was one selected
 
-	batch->InsertMesh ( mesh );
+	batch->InsertMesh ( transform , mesh );
 }
 
 void Renderer::Submit ( Batch *batch ) {

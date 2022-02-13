@@ -63,7 +63,7 @@ public:
 	~Batch ( );
 
 	void Clear ( );
-	void InsertMesh ( const Mesh *mesh );
+	void InsertMesh ( const Transform& transform, const Mesh *mesh );
 	void Upload ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo );
 	void Render ( GPU_UniformBuf *mesh_ubo , GPU_UniformBuf *mat_ubo ) const;
 

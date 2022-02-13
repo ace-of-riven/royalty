@@ -83,7 +83,8 @@ bool Mesh::OwnsBuffers ( ) const {
 }
 
 void Mesh::OnUpdate ( ) {
-	Engine::ViewportRenderer ( )->Submit ( this ) ;
+	if ( Owner ( ) )
+		Engine::ViewportRenderer ( )->Submit ( Owner ( )->FinalTransform ( ) , this ) ;
 }
 
 //

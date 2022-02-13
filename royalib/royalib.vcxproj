@@ -26,7 +26,9 @@
     <ClInclude Include="src\base\base_string.h" />
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
+    <ClInclude Include="src\eng\core\camera.h" />
     <ClInclude Include="src\eng\core\component.h" />
+    <ClInclude Include="src\eng\core\gameobject.h" />
     <ClInclude Include="src\eng\core\material.h" />
     <ClInclude Include="src\eng\core\mesh.h" />
     <ClInclude Include="src\eng\core\proctor.h" />
@@ -147,7 +149,9 @@
     <ClCompile Include="src\base\internal\base_hash.cpp" />
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
+    <ClCompile Include="src\eng\core\camera.cpp" />
     <ClCompile Include="src\eng\core\component.cpp" />
+    <ClCompile Include="src\eng\core\gameobject.cpp" />
     <ClCompile Include="src\eng\core\material.cpp" />
     <ClCompile Include="src\eng\core\mesh.cpp" />
     <ClCompile Include="src\eng\core\proctor.cpp" />

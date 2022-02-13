@@ -12,12 +12,22 @@ unsigned int Proctor::ComponentStack ( unsigned int id ) const {
 	return 0;
 }
 
+Proctor::Proctor ( Proctor *parent ) : is_initialized ( false ) , parent ( parent ) {
+	Proctors.insert ( this );
+}
+
 Proctor::Proctor ( ) : is_initialized ( false ) {
 	Proctors.insert ( this ) ;
 }
 
 Proctor::~Proctor ( ) {
 	Proctors.erase ( this ) ;
+}
+
+glm::mat4 Proctor::FinalTransform ( ) const {
+	if ( parent )
+		return parent->FinalTransform ( ) * transform.GetTransform ( );
+	return transform.GetTransform ( ) ;
 }
 
 void Proctor::Update ( ) {

@@ -50,7 +50,7 @@ void Batch::Clear ( ) {
 	mesh_count = 0;
 }
 
-void Batch::InsertMesh ( const Mesh *mesh ) {
+void Batch::InsertMesh ( const Transform &transform , const Mesh *mesh ) {
 	unsigned int i_offset = vertices_count;
 
 	int material_id = RegisterMaterial ( &mesh->material );
@@ -63,7 +63,7 @@ void Batch::InsertMesh ( const Mesh *mesh ) {
 
 	if ( mesh_properties.data.size ( ) == mesh_count )
 		mesh_properties.data.push_back ( MeshProperties_UBO::Mesh ( ) );
-	mesh_properties.data [ mesh_count ].ModelView = mesh->transform.GetTransform ( );
+	mesh_properties.data [ mesh_count ].ModelView = transform.GetTransform ( ) * mesh->transform.GetTransform ( );
 
 	for ( unsigned int v = 0; v < mesh->VerticesLen ( ); v++ ) {
 		if ( aPos + 1 )

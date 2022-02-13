@@ -9,14 +9,21 @@
 #include <map>
 
 class Proctor {
+	Proctor *parent;
+
 	bool is_initialized;
 
 	std::map<unsigned int , std::vector<Component *>> components;
 protected:
 	virtual unsigned int ComponentStack ( unsigned int id ) const;
 public:
+	Proctor ( Proctor *parent ) ;
 	Proctor ( ) ;
 	~Proctor ( ) ;
+
+	Transform transform;
+
+	glm::mat4 FinalTransform ( ) const ;
 
 	template<class T>
 	bool AddComponent ( T &component ) {
@@ -134,6 +141,8 @@ public:
 	virtual void OnUpdate ( ) { }
 
 	void Update ( ) ;
+
+	inline Proctor *Owner ( ) const { return parent; }
 };
 
 void UpdateProctors ( ) ;
