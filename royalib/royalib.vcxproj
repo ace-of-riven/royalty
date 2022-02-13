@@ -26,6 +26,15 @@
     <ClInclude Include="src\base\base_string.h" />
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
+    <ClInclude Include="src\eng\core\component.h" />
+    <ClInclude Include="src\eng\core\mesh.h" />
+    <ClInclude Include="src\eng\core\proctor.h" />
+    <ClInclude Include="src\eng\core\script.h" />
+    <ClInclude Include="src\eng\engine\engine.h" />
+    <ClInclude Include="src\eng\engine\timer.h" />
+    <ClInclude Include="src\eng\utils\enumerator.h" />
+    <ClInclude Include="src\eng\utils\transform.h" />
+    <ClInclude Include="src\ext_include.h" />
     <ClInclude Include="src\gpu\gpu_backend.h" />
     <ClInclude Include="src\gpu\gpu_batch.h" />
     <ClInclude Include="src\gpu\gpu_context.h" />
@@ -135,6 +144,14 @@
     <ClCompile Include="src\base\internal\base_hash.cpp" />
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
+    <ClCompile Include="src\eng\core\component.cpp" />
+    <ClCompile Include="src\eng\core\mesh.cpp" />
+    <ClCompile Include="src\eng\core\proctor.cpp" />
+    <ClCompile Include="src\eng\core\script.cpp" />
+    <ClCompile Include="src\eng\engine\engine.cpp" />
+    <ClCompile Include="src\eng\engine\timer.cpp" />
+    <ClCompile Include="src\eng\utils\enumerator.cpp" />
+    <ClCompile Include="src\eng\utils\transform.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_backend.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_batch.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_context.cpp" />
@@ -216,12 +233,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Debug;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\Jim\source\repos\royalty\royalib\ext\react3d\include;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jim\source\repos\royalty\royalib\ext\glm\bin\Release;C:\Users\Jim\source\repos\royalty\royalib\ext\glew\lib\Release;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -274,7 +291,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -297,7 +314,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>

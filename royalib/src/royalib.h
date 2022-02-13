@@ -29,25 +29,15 @@
 #include "wm/checkbox.h"
 #include "wm/gdi.h"
 
-#include "eng/debug/eng_dbg_renderer.h"
-#include "eng/eng_manager.h"
-#include "eng/eng_proctor.h"
-#include "eng/eng_gameobject.h"
-#include "eng/eng_component.h"
-#include "eng/eng_renderer.h"
-#include "eng/eng_script.h"
-#include "eng/eng_mesh.h"
-#include "eng/eng_asset.h"
+#include "eng/engine/engine.h"
+#include "eng/engine/timer.h"
+
+#include "eng/core/component.h"
+#include "eng/core/script.h"
+#include "eng/core/mesh.h"
+#include "eng/core/proctor.h"
+
+#include "eng/utils/enumerator.h"
+#include "eng/utils/transform.h"
 
 #include "math/math_matrix.h"
-
-void ROYALTY_init ( ) ;
-void ROYALTY_update ( ) ;
-void ROYALTY_exit ( );
-
-void ROYALTY_MouseUpdate ( int x , int y ) ;
-
-glm::vec2 ROYALTY_Mouse ( ) ;
-glm::vec2 ROYALTY_DeltaMouse ( ) ;
-float ROYALTY_MouseX ( ) ;
-float ROYALTY_MouseY ( ) ;

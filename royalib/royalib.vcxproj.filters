@@ -23,6 +23,18 @@
     <Filter Include="src\base\internal">
       <UniqueIdentifier>{e33413c0-e383-499b-a0f2-ac6398e3aafc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\eng">
+      <UniqueIdentifier>{fa4ecea7-7d01-494d-b011-6d9a8b41ba66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eng\engine">
+      <UniqueIdentifier>{c6e17b40-e966-4270-a55e-e3e16909fd86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eng\utils">
+      <UniqueIdentifier>{bfeb3fc5-9f73-44b1-a26d-0795c1cdf18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eng\core">
+      <UniqueIdentifier>{5fc4c51a-ecfd-4e12-8008-8ca4035cf68b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\royalib.h">
@@ -352,6 +364,33 @@
     <ClInclude Include="src\base\base_utildefines.h">
       <Filter>src\base</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\utils\enumerator.h">
+      <Filter>src\eng\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\engine\engine.h">
+      <Filter>src\eng\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\engine\timer.h">
+      <Filter>src\eng\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\utils\transform.h">
+      <Filter>src\eng\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ext_include.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\core\component.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\core\mesh.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\core\proctor.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eng\core\script.h">
+      <Filter>src\eng\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -416,6 +455,30 @@
     </ClCompile>
     <ClCompile Include="src\base\internal\base_hash.cpp">
       <Filter>src\base\internal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\utils\enumerator.cpp">
+      <Filter>src\eng\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\engine\engine.cpp">
+      <Filter>src\eng\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\engine\timer.cpp">
+      <Filter>src\eng\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\utils\transform.cpp">
+      <Filter>src\eng\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\mesh.cpp">
+      <Filter>src\eng\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\component.cpp">
+      <Filter>src\eng\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\proctor.cpp">
+      <Filter>src\eng\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\core\script.cpp">
+      <Filter>src\eng\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

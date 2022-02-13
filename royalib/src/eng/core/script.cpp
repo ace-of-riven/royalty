@@ -1,4 +1,4 @@
-#include "../eng_script.h"
+#include "script.h"
 
 Script::Script ( ) : Component ( COMP_SCRIPT ) {
 }

@@ -18,6 +18,7 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 			freopen ( "CONOUT$" , "w" , stderr );
 			freopen ( "CONIN$" , "r" , stdin );
 		}
+		Engine::Init ( ) ;
 		return 0;
 	} );
 
@@ -34,6 +35,7 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 	} );
 
 	on_message ( WM_IDLE , [ = ] ( wl::params p ) -> LRESULT {
+		Engine::Update ( ) ;
 		return 0;
 	} );
 }
