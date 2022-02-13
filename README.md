@@ -11,10 +11,8 @@
 
   <p align="center">
     <br />
-    <br />
-    ·
     <a href="https://github.com/jimcodeman/royalty">Report Bug</a>
-    ·
+    <br />
     <a href="https://github.com/jimcodeman/royalty/issues">Request Feature</a>
   </p>
 </div>
@@ -47,8 +45,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![ROYALTY][royalty.png]]
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
 
