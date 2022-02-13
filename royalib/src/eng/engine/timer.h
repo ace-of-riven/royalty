@@ -9,6 +9,6 @@ public:
 	void Reset ( ) ;
 	void Update ( ) ;
 
-	double Clock;
-	double deltaTime;
+	float Clock;
+	float deltaTime;
 };

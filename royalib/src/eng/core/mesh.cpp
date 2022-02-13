@@ -25,6 +25,7 @@ VertexData::VertexData ( const glm::vec4 &coord , const glm::vec3 &normal , cons
 #define MESH_OWNS_BUFFERS			1
 
 Mesh::Mesh ( ) : Component ( COMP_MESH ) {
+	flag = 0;
 }
 
 Mesh::Mesh ( const Transform& transform, const std::vector<VertexData> &vertices , const std::vector<IndexData> &indices ) :

@@ -7,7 +7,7 @@ void Timer::Reset ( ) {
 
 void Timer::Update ( ) {
 	std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now ( );
-	Clock = std::chrono::duration<double> ( now - zero ).count ( );
-	deltaTime = std::chrono::duration<double> ( now - update ).count ( );
+	Clock = std::chrono::duration<float> ( now - zero ).count ( );
+	deltaTime = std::chrono::duration<float> ( now - update ).count ( );
 	update = now;
 }

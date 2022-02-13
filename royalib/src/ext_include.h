@@ -12,6 +12,7 @@
 #include "../ext/glm/glm/gtx/euler_angles.hpp"
 #include "../ext/glm/glm/gtx/matrix_decompose.hpp"
 #include "../ext/glm/glm/gtx/quaternion.hpp"
+#include "../ext/glm/glm/gtx/rotate_vector.hpp"
 
 #include "../ext/json/include/rapidjson/document.h"
 #include "../ext/json/include/rapidjson/writer.h"

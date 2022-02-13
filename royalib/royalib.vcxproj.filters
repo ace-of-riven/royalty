@@ -38,6 +38,9 @@
     <Filter Include="src\eng\renderer">
       <UniqueIdentifier>{37258e78-445e-4a3b-85b4-42169ff650e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\eng\physics">
+      <UniqueIdentifier>{00b2b41e-b038-4e6e-ba39-4558dbc3ef8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\royalib.h">
@@ -409,6 +412,9 @@
     <ClInclude Include="src\eng\core\gameobject.h">
       <Filter>src\eng\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\eng\physics\physics.h">
+      <Filter>src\eng\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gpu\internal\gpu_init.cpp">
@@ -512,6 +518,9 @@
     </ClCompile>
     <ClCompile Include="src\eng\core\gameobject.cpp">
       <Filter>src\eng\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eng\physics\physics.cpp">
+      <Filter>src\eng\physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

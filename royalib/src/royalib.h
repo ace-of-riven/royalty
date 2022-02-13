@@ -36,6 +36,7 @@
 #include "eng/core/script.h"
 #include "eng/core/mesh.h"
 #include "eng/core/proctor.h"
+#include "eng/core/gameobject.h"
 
 #include "eng/utils/enumerator.h"
 #include "eng/utils/transform.h"
