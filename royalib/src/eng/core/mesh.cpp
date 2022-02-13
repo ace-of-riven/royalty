@@ -1,5 +1,7 @@
 #include "mesh.h"
 
+#include "../engine/engine.h"
+
 VertexData::VertexData ( ) {
 	this->bone_i [ 0 ] = -1;
 	this->bone_i [ 1 ] = -1;
@@ -81,16 +83,92 @@ bool Mesh::OwnsBuffers ( ) const {
 }
 
 void Mesh::OnUpdate ( ) {
+	Engine::ViewportRenderer ( )->Submit ( this ) ;
 }
 
 //
 
 Mesh *Plane ( float w , float h ) {
 	static VertexData v [ 4 ] = {
-	VertexData ( glm::vec4 ( -w / 2.0f ,  h / 2.0f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
-	VertexData ( glm::vec4 (  w / 2.0f ,  h / 2.0f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
-	VertexData ( glm::vec4 (  w / 2.0f , -h / 2.0f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
-	VertexData ( glm::vec4 ( -w / 2.0f , -h / 2.0f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) };
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f , 0.0f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) };
 	static IndexData i [ 6 ] = { 0 , 1 , 2 , 2 , 3 , 0 } ;
-	return new Mesh ( glm::mat4 ( 1.0f ) , v , 4 , i , 6 , true ) ;
+	return new Mesh ( glm::scale ( glm::vec3 ( w , h , 1.0f ) ) , v , 4 , i , 6 , true ) ;
+}
+
+Mesh *Cube ( float w , float h , float d ) {
+	static VertexData v [ 24 ] = {
+	// top
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 1.0f , -1.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 1.0f , -1.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 1.0f , -1.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 1.0f , -1.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) ,
+
+	// bottom
+	VertexData ( glm::vec4 ( -0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , -1.0f , 0.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , -1.0f , 0.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , -1.0f , 0.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , -1.0f , 0.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) ,
+
+	// front
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f , -1.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) ,
+
+	// back
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f ,  1.0f ) , glm::vec2 ( 0.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f ,  1.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f ,  1.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 ( 0.0f , 0.0f ,  1.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) ,
+
+	// left
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 ( -1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 ( -1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 ( -1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 ( -0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 ( -1.0f , 0.0f , 0.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) ,
+	
+	// right
+	VertexData ( glm::vec4 (  0.5f ,  0.5f ,  0.5f , 1.0f ) , glm::vec3 (  1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 0.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f ,  0.5f , -0.5f , 1.0f ) , glm::vec3 (  1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f ,  0.5f , 1.0f ) , glm::vec3 (  1.0f , 0.0f , 0.0f ) , glm::vec2 ( 1.0f , 1.0f ) ) ,
+	VertexData ( glm::vec4 (  0.5f , -0.5f , -0.5f , 1.0f ) , glm::vec3 (  1.0f , 0.0f , 0.0f ) , glm::vec2 ( 0.0f , 1.0f ) ) };
+	static IndexData i [ 36 ] = {
+	 0,  1,  2,  2,  3,  1,		//Top
+	 4,  5,  6,  6,  7,  5,		//Bottom
+	 8,  9, 10, 10, 11,  9,		//Front
+	12, 13, 14, 14, 15, 13,		//Back
+	16, 17, 18, 18, 19, 17,		//Left
+	20, 21, 22, 22, 23, 21 }; 	//Right
+	return new Mesh ( glm::scale ( glm::vec3 ( w , h , d ) ) , v , 24 , i , 36 , true );
+}
+
+Mesh *Sphere ( float radius , unsigned int rings , unsigned int sectors ) {
+	const float R = 1. / ( float ) ( rings - 1 );
+	const float S = 1. / ( float ) ( sectors - 1 );
+	std::vector<VertexData> v;
+	for ( unsigned int r = 0; r < rings; r++ ) for ( unsigned int s = 0; s < sectors; s++ ) {
+		const float y = sin ( -glm::two_pi<float> ( ) + glm::pi<float> ( ) * r * R ) ;
+		const float x = cos ( 2.0f * glm::pi<float> ( ) * s * S ) * sin ( glm::pi<float> ( ) * r * R );
+		const float z = sin ( 2.0f * glm::pi<float> ( ) * s * S ) * sin ( glm::pi<float> ( ) * r * R );
+
+		v.push_back ( VertexData (
+			glm::vec4 ( x , y , z , 1.0f ) ,
+			glm::vec3 ( x , y , z ) ,
+			glm::vec2 ( s * S , r * R )
+		) );
+	}
+	std::vector<IndexData> i;
+	for ( unsigned int r = 0; r < rings; r++ ) for ( unsigned int s = 0; s < sectors; s++ ) {
+		i.push_back ( r * sectors + s );
+		i.push_back ( r * sectors + ( s + 1 ) );
+		i.push_back ( ( r + 1 ) * sectors + ( s + 1 ) );
+
+		i.push_back ( ( r + 1 ) * sectors + ( s + 1 ) );
+		i.push_back ( ( r + 1 ) * sectors + s );
+		i.push_back ( r * sectors + s );
+	}
+	return new Mesh ( glm::scale ( glm::vec3 ( radius , radius , radius ) ) , v , i );
 }

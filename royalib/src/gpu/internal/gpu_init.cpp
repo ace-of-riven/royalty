@@ -48,6 +48,7 @@ bool GPU_init ( void ) {
 	GPU_platform_init ( ) ;
 
 	printf ( "\n" );
+#ifdef _DEBUG
 	EXTENSION_TO_ARG ( GL_EXT_422_pixels );
 	EXTENSION_TO_ARG ( GL_EXT_Cg_shader );
 	EXTENSION_TO_ARG ( GL_EXT_EGL_image_array );
@@ -576,6 +577,7 @@ bool GPU_init ( void ) {
 	EXTENSION_TO_ARG ( GL_EXT_gpu_shader4 );
 	EXTENSION_TO_ARG ( GL_EXT_framebuffer_sRGB );
 	printf ( "\n" );
+#endif
 
 	return initialized = true;
 }

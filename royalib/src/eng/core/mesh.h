@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component.h"
+#include "material.h"
 
 #include <vector>
 
@@ -46,6 +47,8 @@ public:
 
 	virtual void OnUpdate ( ) ;
 
+	Material material;
+
 	Transform transform;
 
 	bool OwnsBuffers ( ) const ;
@@ -57,3 +60,6 @@ public:
 };
 
 Mesh *Plane ( float width , float height ) ;
+Mesh *Cube ( float width , float height , float depth ) ;
+
+Mesh *Sphere ( float radius , unsigned int rings , unsigned int sectors ) ;

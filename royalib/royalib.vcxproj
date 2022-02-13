@@ -27,11 +27,14 @@
     <ClInclude Include="src\base\base_utildefines.h" />
     <ClInclude Include="src\console.h" />
     <ClInclude Include="src\eng\core\component.h" />
+    <ClInclude Include="src\eng\core\material.h" />
     <ClInclude Include="src\eng\core\mesh.h" />
     <ClInclude Include="src\eng\core\proctor.h" />
     <ClInclude Include="src\eng\core\script.h" />
     <ClInclude Include="src\eng\engine\engine.h" />
     <ClInclude Include="src\eng\engine\timer.h" />
+    <ClInclude Include="src\eng\renderer\batch.h" />
+    <ClInclude Include="src\eng\renderer\renderer.h" />
     <ClInclude Include="src\eng\utils\enumerator.h" />
     <ClInclude Include="src\eng\utils\transform.h" />
     <ClInclude Include="src\ext_include.h" />
@@ -145,11 +148,14 @@
     <ClCompile Include="src\base\internal\base_string.cpp" />
     <ClCompile Include="src\console.cpp" />
     <ClCompile Include="src\eng\core\component.cpp" />
+    <ClCompile Include="src\eng\core\material.cpp" />
     <ClCompile Include="src\eng\core\mesh.cpp" />
     <ClCompile Include="src\eng\core\proctor.cpp" />
     <ClCompile Include="src\eng\core\script.cpp" />
     <ClCompile Include="src\eng\engine\engine.cpp" />
     <ClCompile Include="src\eng\engine\timer.cpp" />
+    <ClCompile Include="src\eng\renderer\batch.cpp" />
+    <ClCompile Include="src\eng\renderer\renderer.cpp" />
     <ClCompile Include="src\eng\utils\enumerator.cpp" />
     <ClCompile Include="src\eng\utils\transform.cpp" />
     <ClCompile Include="src\gpu\internal\gpu_backend.cpp" />
@@ -295,6 +301,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -318,6 +325,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
