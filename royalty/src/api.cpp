@@ -22,18 +22,6 @@ GlobalWindow::GlobalWindow ( ) : wl::window_main ( ) {
 		return 0;
 	} );
 
-	on_message ( WM_LBUTTONDOWN , [ = ] ( wl::wm::lbuttondown p ) -> LRESULT {
-		return 0;
-	} );
-
-	on_message ( WM_MOUSEMOVE , [ = ] ( wl::wm::lbuttondown p ) -> LRESULT {
-		return 0;
-	} );
-
-	on_message ( WM_LBUTTONUP , [ = ] ( wl::wm::lbuttonup p ) -> LRESULT {
-		return 0;
-	} );
-
 	on_message ( WM_IDLE , [ = ] ( wl::params p ) -> LRESULT {
 		Engine::Update ( ) ;
 		return 0;
